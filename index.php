@@ -61,7 +61,7 @@ $fmModDate = (new DateTime($modDate))->format('Y年m月d日');
 
 <h3>アプリケーションの動作条件</h3>
 <ul>
-    <li>このアプリケーションは、MySQLで、INTER-Mediatorに付属のサンプルデータベースが稼働していることを前提としています。</li>
+    <li>このアプリケーションよりサンプルプログラムを稼働するには、MySQLで、INTER-Mediatorに付属のサンプルデータベースが稼働していることを前提としています。</li>
     <li>
         <a href="https://raw.githubusercontent.com/INTER-Mediator/INTER-Mediator/master/dist-docs/sample_schema_mysql.txt"
            target="_blank">
