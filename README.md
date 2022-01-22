@@ -1,22 +1,27 @@
-# IMApp_SimpleBBS
-Simple BBS Web Application with Using INTER-Mediator.
+# IMApp_Trial
+INTER-Mediator Trial web application.
+You can check the sample programs, also study how to write code for INTER-Mediator with the corseware.
 
-This is a part of the hands-on session to study INTER-Mediator, but you don't have to work, and all codes are prepared on this repository. If you want to check the contents of the session, the url below is documentation (Japanase).
-
-https://qiita.com/motofumi/items/57583c2b28d0d11a1a9d
+https://inter-mediator.com/ja/courseware.html
 
 # Preparation
 Installing PHP, git, composer, MySQL and Node.js with npm.
 
-The database has to be prepared with the following schema which is the sample db of the INTER-Mediator. If you already try to use the INTER-Mediator, this sample db has to be setup.
+The database has to be prepared with the following schema which is the sample db (the db name is 'test_db') of the INTER-Mediator. If you already try to use the INTER-Mediator, this sample db has to be setup.
 
 https://raw.githubusercontent.com/INTER-Mediator/INTER-Mediator/master/dist-docs/sample_schema_mysql.txt
 
+If you already prepare the MySQL, and you know the root password, after you clone this repository you can set up the test_db as following.
+```
+cd IMApp_Trial # assuming the current directory is the root of this repository.
+mysql -u root -p < vendor/inter-mediator/inter-mediator/dist-docs/sample_schema_mysql.txt
+# Homebrew user might not set the root password, so you can remove the -p parameter.
+```
 # Setup
 This web app based on the composer. So you clone this repository, following to execute the composer command on the root of the repository.
 ```
-git clone https://github.com/inter-mediator/IMApp_SimpleBBS
-cd IMApp_SimpleBBS
+git clone https://github.com/inter-mediator/IMApp_Trial
+cd IMApp_Trial
 composer update
 ```
 

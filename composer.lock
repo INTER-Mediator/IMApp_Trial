@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c8e96f2b002fe8c00ef2e997d3420f49",
+    "content-hash": "e6d68515bc3c5c5e5cb342c4ead76322",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -58,16 +58,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.209.8",
+            "version": "3.209.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "da83dc5bae8f67a80e53423ad8dac2c0f48b3220"
+                "reference": "45082e9fac26bdbc5db504639373374084f616d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/da83dc5bae8f67a80e53423ad8dac2c0f48b3220",
-                "reference": "da83dc5bae8f67a80e53423ad8dac2c0f48b3220",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/45082e9fac26bdbc5db504639373374084f616d3",
+                "reference": "45082e9fac26bdbc5db504639373374084f616d3",
                 "shasum": ""
             },
             "require": {
@@ -143,9 +143,9 @@
             "support": {
                 "forum": "https://forums.aws.amazon.com/forum.jspa?forumID=80",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.209.8"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.209.10"
             },
-            "time": "2022-01-19T19:18:46+00:00"
+            "time": "2022-01-21T19:18:51+00:00"
         },
         {
             "name": "doctrine/lexer",
@@ -2232,16 +2232,16 @@
         },
         {
             "name": "simplesamlphp/saml2",
-            "version": "v4.3.1",
+            "version": "v4.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "809265e4ff7e1dc39df115828ffddfb486a3199e"
+                "reference": "f3b13417deb45f882f676108c250143f994eb2a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/809265e4ff7e1dc39df115828ffddfb486a3199e",
-                "reference": "809265e4ff7e1dc39df115828ffddfb486a3199e",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/f3b13417deb45f882f676108c250143f994eb2a4",
+                "reference": "f3b13417deb45f882f676108c250143f994eb2a4",
                 "shasum": ""
             },
             "require": {
@@ -2284,9 +2284,9 @@
             "description": "SAML2 PHP library from SimpleSAMLphp",
             "support": {
                 "issues": "https://github.com/simplesamlphp/saml2/issues",
-                "source": "https://github.com/simplesamlphp/saml2/tree/v4.3.1"
+                "source": "https://github.com/simplesamlphp/saml2/tree/v4.4.0"
             },
-            "time": "2022-01-18T12:30:27+00:00"
+            "time": "2022-01-20T17:38:13+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp",

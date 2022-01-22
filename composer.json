@@ -1,11 +1,11 @@
 {
-  "name": "inter-mediator/simple-bbs",
+  "name": "inter-mediator/im-trial",
   "version": "2",
   "time": "2022-01-14",
   "repositories": [
     {
       "type": "git",
-      "url": "https://github.com/INTER-Mediator/IMApp_SimpleBBS.git"
+      "url": "https://github.com/INTER-Mediator/IMApp_Trial.git"
     }
   ],
   "minimum-stability": "dev",
@@ -15,7 +15,7 @@
     "inter-mediator/inter-mediator": ">=9"
   },
   "autoload": {},
-  "description": "Simple BBS Web Application with Using INTER-Mediator.",
+  "description": "INTER-Mediator Trial Application, also suitable for studying INTER-Mediator",
   "type": "application",
   "keywords": [
     "INTER-Mediator",
@@ -47,11 +47,13 @@
     "post-update-cmd": [
       "cd ./vendor/inter-mediator/inter-mediator; npm install",
       "cd ./vendor/inter-mediator/inter-mediator; npm update",
-      "cd ./vendor/inter-mediator/inter-mediator/dist-docs; ./generateminifyjshere.sh"
+      "cd ./vendor/inter-mediator/inter-mediator/dist-docs; ./generateminifyjshere.sh",
+      "cd ./lib; ./trialsetup.sh"
     ],
     "post-install-cmd": [
       "cd ./vendor/inter-mediator/inter-mediator; npm install",
-      "cd ./vendor/inter-mediator/inter-mediator/dist-docs; ./generateminifyjshere.sh"
+      "cd ./vendor/inter-mediator/inter-mediator/dist-docs; ./generateminifyjshere.sh",
+      "cd ./lib; ./trialsetup.sh"
     ]
   },
   "config": {

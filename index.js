@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<!--
 /*
  * INTER-Mediator
  * Copyright (c) INTER-Mediator Directive Committee (http://inter-mediator.org)
@@ -8,13 +6,8 @@
  * INTER-Mediator is supplied under MIT License.
  * Please see the full license for details:
  * https://github.com/INTER-Mediator/INTER-Mediator/blob/master/dist-docs/License.txt
- */  -->
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; URL=index.php">
-    <title>INTER-Mediator Trial</title>
-</head>
-<body>
-</body>
-</html>
+ */
+window.onload = function () {
+    INTERMediatorLog.suppressErrorMessageOnPage = true;
+    INTERMediator.construct(true);
+};
