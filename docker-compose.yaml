@@ -1,0 +1,33 @@
+version: '3'
+services:
+  php-apache:
+    image: php-apache_im
+    build:
+      context: .
+      dockerfile: ./lib/docker/php-apache/Dockerfile
+    platform: linux/amd64
+    container_name: php-apache_im
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www/html/src
+    restart: always
+    depends_on:
+      - mysql
+  mysql:
+    image: mysql:latest
+    platform: linux/amd64
+    container_name: mysql_im
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: in4135dev
+      MYSQL_USER: web
+      MYSQL_PASSWORD: password
+      TZ: 'Asia/Tokyo'
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+    volumes:
+      - "./lib/docker/mysql/data:/var/lib/mysql"
+      - "./lib/docker/mysql/conf:/etc/mysql/conf.d"
+      - "./lib/docker/mysql/initdb/sample_schema_mysql.sql:/docker-entrypoint-initdb.d/sample_schema_mysql.sql"
+    ports:
+      - 3306:3306
