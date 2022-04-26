@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 services:
   php-apache:
     image: php-apache_im
@@ -13,21 +13,23 @@ services:
       - ./src:/var/www/html/src
     restart: always
     depends_on:
-      - mysql
-  mysql:
+      - db
+  db:
     image: mysql:latest
     platform: linux/amd64
-    container_name: mysql_im
+    restart: always
+    volumes:
+      - type: bind
+        source: ./lib/docker/mysql/initdb/sample_schema_mysql.sql
+        target: /docker-entrypoint-initdb.d/sample_schema_mysql.sql
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: in4135dev
+      MYSQL_DATABASE: test_db
+      MYSQL_ROOT_PASSWORD: im4135dev
       MYSQL_USER: web
       MYSQL_PASSWORD: password
-      TZ: 'Asia/Tokyo'
-    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
-    volumes:
-      - "./lib/docker/mysql/data:/var/lib/mysql"
-      - "./lib/docker/mysql/conf:/etc/mysql/conf.d"
-      - "./lib/docker/mysql/initdb/sample_schema_mysql.sql:/docker-entrypoint-initdb.d/sample_schema_mysql.sql"
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_bin
     ports:
-      - 3306:3306
+      - 127.0.0.1:3306:3306
+
+# https://zenn.dev/ajapa/articles/938499b8c96926
+# https://jablogs.com/detail/75839

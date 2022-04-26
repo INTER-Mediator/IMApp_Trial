@@ -19,7 +19,7 @@ SET NAMES 'utf8mb4';
 # DROP USER 'web'@'localhost';
 # CREATE USER 'web'@'localhost' IDENTIFIED BY 'password'; # plugin caching_sha2_password
 # For Ver.5.7.6 or later.
-# CREATE USER IF NOT EXISTS 'web'@'localhost' IDENTIFIED BY 'password'; # plugin caching_sha2_password
+CREATE USER IF NOT EXISTS 'web'@'localhost' IDENTIFIED BY 'password'; # plugin caching_sha2_password
 
 ######### For MySQL v8, alter above block as follwing.
 # DROP USER IF EXISTS 'web'@'localhost';

@@ -34,7 +34,7 @@ $dbProtocol = 'HTTP';
 
 /* PDO awares below:
  */
-$dbDSN = 'mysql:host=mysql;dbname=test_db;charset=utf8mb4';
+$dbDSN = 'mysql:host=db;dbname=test_db;charset=utf8mb4';
 //$dbDSN = 'mysql:host=127.0.0.1;dbname=test_db;charset=utf8mb4';
 //$dbDSN = 'mysql:unix_socket=/tmp/mysql.sock;dbname=test_db;charset=utf8mb4';
 $dbOption = array();
@@ -151,8 +151,8 @@ $slackParameters = [
 /* Service Server Behavior
  * ===================
  * Port number and host name for service server */
-$notUseServiceServer = false;  // Default is FALSE!. If it sets to false, every features with Service Server don't work.
-$activateClientService = true;  // Default is TRUE!!.
+$notUseServiceServer = true;  // Default is FALSE!. If it sets to false, every features with Service Server don't work.
+$activateClientService = false;  // Default is TRUE!!.
 $serviceServerProtocol = "ws";  // The Service Server url components to connect from client.
 $serviceServerHost = "";    // "" for public ip address.
 $serviceServerPort = "11478";

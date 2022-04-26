@@ -1,15 +1,6 @@
 FROM php:8.0-apache
 
 # Refer to https://tt-computing.com/docker-php8_0-lamp, Thanks!
-  # Node.js
-#  ARG node_ver=14.15.1
-#  ARG node_path=/usr/local/lib/nodejs
-#  ARG node_file_name=node-v${node_ver}-linux-x64
-#  ENV PATH ${node_path}/${node_file_name}/bin:$PATH
-#  RUN curl https://nodejs.org/dist/v${node_ver}/${node_file_name}.tar.xz > ${node_file_name}.tar.xz \
-#    && mkdir -p $node_path \
-#    && tar xJvf ${node_file_name}.tar.xz -C $node_path
-
   # Composer
   ARG composer_ver=2.3.5
   ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
