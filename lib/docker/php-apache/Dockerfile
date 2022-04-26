@@ -1,4 +1,4 @@
-FROM php:8.0-apache
+FROM php:8.1-apache
 
 # Refer to https://tt-computing.com/docker-php8_0-lamp, Thanks!
   # Composer
