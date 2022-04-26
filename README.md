@@ -4,7 +4,26 @@ You can check the sample programs, also study how to write code for INTER-Mediat
 
 https://inter-mediator.com/ja/courseware.html
 
-# Preparation
+Here is two options about the installation, they are docker and direct hosting.
+
+# Installing with Docker
+
+You have to run the Docker Desktop, and execute below.
+
+```
+git clone https://github.com/inter-mediator/IMApp_Trial
+cd IMApp_Trial
+docker-compose up -d
+```
+
+It might be over 10 minutes to build the containers. After finishing to do them, open ```http://localhost:9080/``` on your web browser. The top page of the INTER-Mediator demo app is going to show on.
+
+The editable pages and definition files are stored in files out-side of the docker container, so they are persistent.
+The MySQL launches as a docker container and the schema has already assigned, but the db isn't persistent, so the data added after booting container will disappear after stop them.
+
+# Installing for direct hosting
+
+## Preparation
 Installing PHP, git, composer, MySQL and Node.js with npm.
 
 The database has to be prepared with the following schema which is the sample db (the db name is 'test_db') of the INTER-Mediator. If you already try to use the INTER-Mediator, this sample db has to be setup.
@@ -18,7 +37,7 @@ mysql -u root -p < vendor/inter-mediator/inter-mediator/dist-docs/sample_schema_
 # Homebrew user might not set the root password, so you can remove the -p parameter.
 # Windows user have to change the directory separator / to ¥ or \.
 ```
-# Setup
+## Setup
 This web app based on the composer. So you clone this repository, following to execute the composer command on the root of the repository.
 ```
 git clone https://github.com/inter-mediator/IMApp_Trial
@@ -26,7 +45,7 @@ cd IMApp_Trial
 composer update
 ```
 
-## For Windows
+### For Windows
 
 If you have the Windows Subsystem for Linux (WSL), you can set it up same as macOS/Linux.
 If you don't (e.g. Windows PowerShell), you are going to get an error at the end of composer update command.
@@ -48,4 +67,4 @@ The quick way to host the web app, the php command's server mode is convenient.
 ```
 php -S localhost:9000
 ```
-After that, you can access the application with url http://localhost:9000/ from any browser that executing on the same host.
+After that, you can access the application with url ```http://localhost:9000/``` from any browser that executing on the same host.
