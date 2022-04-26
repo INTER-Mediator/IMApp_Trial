@@ -34,7 +34,7 @@ $dbProtocol = 'HTTP';
 
 /* PDO awares below:
  */
-$dbDSN = 'mysql:host=db;dbname=test_db;charset=utf8mb4';
+$dbDSN = 'mysql:host=db;port=9081;dbname=test_db;charset=utf8mb4';
 //$dbDSN = 'mysql:host=127.0.0.1;dbname=test_db;charset=utf8mb4';
 //$dbDSN = 'mysql:unix_socket=/tmp/mysql.sock;dbname=test_db;charset=utf8mb4';
 $dbOption = array();
