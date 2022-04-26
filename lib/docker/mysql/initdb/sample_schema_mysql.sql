@@ -16,20 +16,20 @@ Enter password:
 */
 SET NAMES 'utf8mb4';
 # For Ver.5.7.5 or earlier. DROP USER statement should be activate on the first run.
-# DROP USER 'web'@'localhost';
-# CREATE USER 'web'@'localhost' IDENTIFIED BY 'password'; # plugin caching_sha2_password
+# DROP USER 'web'@'%';
+# CREATE USER 'web'@'%' IDENTIFIED BY 'password'; # plugin caching_sha2_password
 # For Ver.5.7.6 or later.
-CREATE USER IF NOT EXISTS 'web'@'localhost' IDENTIFIED BY 'password'; # plugin caching_sha2_password
+CREATE USER IF NOT EXISTS 'web'@'%' IDENTIFIED BY 'password'; # plugin caching_sha2_password
 
 ######### For MySQL v8, alter above block as follwing.
-# DROP USER IF EXISTS 'web'@'localhost';
-# CREATE USER 'web'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+# DROP USER IF EXISTS 'web'@'%';
+# CREATE USER 'web'@'%' IDENTIFIED WITH mysql_native_password BY 'password';
 ######### Moreover add descriptions to the [mysqld] section of any cnf file.
 ######### default_authentication_plugin = mysql_native_password
 
 # Grant to All operations for all objects with web account
-GRANT SELECT, INSERT, DELETE, UPDATE ON TABLE test_db.* TO 'web'@'localhost';
-GRANT SHOW VIEW ON TABLE test_db.* TO 'web'@'localhost';
+GRANT SELECT, INSERT, DELETE, UPDATE ON TABLE test_db.* TO 'web'@'%';
+GRANT SHOW VIEW ON TABLE test_db.* TO 'web'@'%';
 # For mysqldump, the SHOW VIEW privilege is just required, and use options --single-transaction and --no-tablespaces.
 
 DROP DATABASE IF EXISTS test_db;
