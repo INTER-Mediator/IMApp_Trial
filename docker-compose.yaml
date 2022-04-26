@@ -8,7 +8,7 @@ services:
     platform: linux/amd64
     container_name: php-apache_im
     ports:
-      - "8080:80"
+      - "9080:80"
     volumes:
       - ./src:/var/www/html/src
     restart: always
