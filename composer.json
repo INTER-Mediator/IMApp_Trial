@@ -12,7 +12,7 @@
   "prefer-stable": true,
   "require": {
     "php": ">=7.1.0",
-    "inter-mediator/inter-mediator": ">=9"
+    "inter-mediator/inter-mediator": "dev-master"
   },
   "autoload": {},
   "description": "INTER-Mediator Trial Application, also suitable for studying INTER-Mediator",
