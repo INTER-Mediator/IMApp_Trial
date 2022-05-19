@@ -1,6 +1,9 @@
+[日本語版はこちらにあります](https://github.com/inter-mediator/IMApp_Trial/blob/master/README-ja.md)
+
+
 # IMApp_Trial
 INTER-Mediator Trial web application.
-You can check the sample programs, also study how to write code for INTER-Mediator with the corseware.
+You can check the sample programs, also study how to write code for INTER-Mediator with the courseware.
 
 https://inter-mediator.com/ja/courseware.html
 
