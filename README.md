@@ -1,4 +1,4 @@
-[日本語版はこちらにあります](https://github.com/inter-mediator/IMApp_Trial/blob/master/README-ja.md)
+[日本語版はこちらにあります](https://github.com/inter-mediator/IMApp_Trial/blob/master/README-jp.md)
 
 
 # IMApp_Trial
