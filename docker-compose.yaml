@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: ./lib/docker/php-apache/Dockerfile
-    platform: linux/amd64
+#    platform: linux/amd64
     container_name: php-apache_im
     ports:
       - "9080:80"

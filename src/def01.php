@@ -31,6 +31,10 @@ IM_Entry(array (
     ),
     'repeat-control' => 'confirm-insert confirm-delete',
   ),
+  1 => 
+  array (
+    'name' => '= new context =',
+  ),
 ),
 array (
 ),
@@ -38,3 +42,4 @@ array (
   'db-class' => 'PDO',
 ),
 2);
+?>
