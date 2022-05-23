@@ -61,7 +61,7 @@ npm install
 cd .¥dist-docs
 ./generateminifyjshere.sh
 cd ..¥..¥..¥..¥lib
-./trialsetup.sh"
+./trialsetup.sh
 cd ..
 ```
 
