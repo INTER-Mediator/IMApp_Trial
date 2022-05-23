@@ -61,7 +61,11 @@ $fmModDate = (new DateTime($modDate))->format('Y年m月d日');
 
 <h3>アプリケーションの動作条件</h3>
 <ul>
-    <li>このアプリケーションよりサンプルプログラムを稼働するには、MySQLで、INTER-Mediatorに付属のサンプルデータベースが稼働していることを前提としています。</li>
+    <li>
+        このアプリケーションよりサンプルプログラムを稼働するには、MySQLで、INTER-Mediatorに付属のサンプルデータベースが稼働していることを前提としています。
+        <span style="color:red">Dockerで起動した場合には、サンプルデータベースは稼働した状態になっています。</span>
+        ダイレクトホスティング（レポジトリのコードを直接公開）の場合は、以下の方法で、MySQLデータベースが稼働する状態にしてください。
+    </li>
     <li>
         <a href="https://raw.githubusercontent.com/INTER-Mediator/INTER-Mediator/master/dist-docs/sample_schema_mysql.txt"
            target="_blank">
