@@ -29,4 +29,4 @@ services:
       MYSQL_PASSWORD: password
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_bin
     ports:
-      - 127.0.0.1:3306:3306
+      - 127.0.0.1:13306:3306
