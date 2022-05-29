@@ -5,4 +5,4 @@
 vendor/
 node_modules/
 lib/docker/mysql/conf
-/lib/docker/mysql/data
+lib/docker/mysql/db/

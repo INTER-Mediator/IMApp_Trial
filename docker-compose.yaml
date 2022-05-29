@@ -23,7 +23,7 @@ services:
         source: ./lib/docker/mysql/initdb/sample_schema_mysql.sql
         target: /docker-entrypoint-initdb.d/sample_schema_mysql.sql
       - type: bind
-        source: ./lib/docker/db
+        source: ./lib/docker/mysql/db
         target: /var/lib/mysql
     environment:
       MYSQL_DATABASE: test_db
