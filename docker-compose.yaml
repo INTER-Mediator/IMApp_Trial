@@ -22,6 +22,9 @@ services:
       - type: bind
         source: ./lib/docker/mysql/initdb/sample_schema_mysql.sql
         target: /docker-entrypoint-initdb.d/sample_schema_mysql.sql
+      - type: bind
+        source: ./lib/docker/db
+        target: /var/lib/mysql
     environment:
       MYSQL_DATABASE: test_db
       MYSQL_ROOT_PASSWORD: im4135dev
