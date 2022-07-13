@@ -102,7 +102,7 @@ $browserCompatibility = array(
 // $waitAfterMail = 20;  // Wait after send email with smtp server. Unit is Millisecond.
 
 // Sending email features compatibility with INTER-Mediator v5 unless 'template-context' key isn't specified.
-$sendMailCompatibilityMode = true;  // default is true
+// $sendMailCompatibilityMode = true;  // default is true
 
 // Slack posting token and channel. You must create the Slack App permitting 'chat:write:bot' and generate OAuth2 token.
 $slackParameters = [
