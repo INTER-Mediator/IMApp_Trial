@@ -33,3 +33,8 @@ services:
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_bin
     ports:
       - 127.0.0.1:13306:3306
+#  mailhog:
+#    image: mailhog/mailhog
+#    ports:
+#      - "8025:8025"
+#      - "1025:1025"
