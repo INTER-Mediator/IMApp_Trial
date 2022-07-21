@@ -6,3 +6,5 @@ vendor/
 node_modules/
 lib/docker/mysql/conf
 lib/docker/mysql/db/
+src/*.php
+src/*.html
