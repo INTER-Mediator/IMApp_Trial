@@ -1,6 +1,6 @@
 <!-- -*- coding: utf-8 -*- -->
 
-[English README is here](https://github.com/inter-mediator/IMApp_Trial/blob/master/README.md)
+[English README is here](./README.md)
 
 
 # IMApp_Trial
