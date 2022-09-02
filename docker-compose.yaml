@@ -26,9 +26,9 @@ services:
       - type: bind
         source: ./lib/docker/mysql/db
         target: /var/lib/mysql
-      - db:/var/lib/mysql
-      # ~~~~~~~ 以下のコードを追記 ~~~~~~~~~~~~
-      - ./my.cnf:/etc/mysql/conf.d/my.cnf
+      - type: bind
+        source: ./lib/docker/mysql/conf/my.cnf
+        target: /etc/mysql/conf.d/my.cnf
     environment:
       MYSQL_DATABASE: test_db
       MYSQL_ROOT_PASSWORD: im4135dev
@@ -37,8 +37,6 @@ services:
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_bin
     ports:
       - 127.0.0.1:13306:3306
-volumes:
-  db:
 #  mailhog:
 #    image: mailhog/mailhog
 #    ports:
