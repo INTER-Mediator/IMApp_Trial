@@ -1163,6 +1163,20 @@ SET invoice_id=3,
     product_id=3,
     qty=20;
 
+CREATE VIEW item_display AS
+SELECT item.id,
+       item.invoice_id,
+       item.product_id,
+       item.category_id,
+       product.name,
+       item.qty,
+       item.unitprice,
+       product.unitprice                                                         as unitprice_master,
+       IF(item.unitprice is null, qty * product.unitprice, qty * item.unitprice) AS amount
+FROM item,
+     product
+WHERE item.product_id = product.id;
+
 # mysql> select * from item_display;
 # +----+------------+------------+-------------+--------+------+-----------+------------------+--------+
 # | id | invoice_id | product_id | category_id | name   | qty  | unitprice | unitprice_master | amount |
