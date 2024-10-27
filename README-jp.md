@@ -20,7 +20,7 @@ Docker Desktopが稼働可能な状態になったら以下を実行します。
 ```
 git clone https://github.com/inter-mediator/IMApp_Trial
 cd IMApp_Trial
-docker-compose up -d
+docker compose up -d
 ```
 
 コンテナのビルドに10分以上かかるかもしれません。しかし、これだけでINTER-Mediatorの開発環境が実行可能になりました。
