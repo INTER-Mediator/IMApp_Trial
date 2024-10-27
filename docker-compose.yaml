@@ -1,3 +1,4 @@
+version: '3.8'
 services:
   php-apache:
     image: php-apache_im
@@ -36,8 +37,8 @@ services:
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_bin
     ports:
       - 127.0.0.1:13306:3306
-  mailpit:
-    image: axllent/mailpit
-    ports:
-      - "8025:8025"
-      - "1025:1025"
+#  mailpit:
+#    image: axllent/mailpit
+#    ports:
+#      - "8025:8025"
+#      - "1025:1025"
