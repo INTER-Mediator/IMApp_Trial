@@ -133,10 +133,19 @@ $slackParameters = [
 //$suppressAuthTargetFillingOnCreate = false; // If you don' want to set the target field of authentication on carete operation, set this true.
 
 /* OAuth Support */
-// $oAuthProvider = 'Google';
-// $oAuthClientID = '';
-// $oAuthClientSecret = '';
-// $oAuthRedirect = 'http://localhost:7001/Auth_Support/OAuthCatcher.php';
+//$oAuth = [
+//    'Google' => [
+//        'AuthButton' => 'Google Auth',
+//        'ClientID' => 'xxxxxxxx',
+//        'ClientSecret' => 'xxxxxx',
+//        'RedirectURL' => 'http://localhost:9000/samples/Auth_Support/OAuthCatcher.php',
+//    ],
+//    'MyNumberCard-Sandbox' => [
+//        'AuthButton' => 'My Number Card',
+//        'ClientID' => 'TESTCLIENT01',
+//        'RedirectURL' => 'http://localhost:9000/samples/Auth_Support/OAuthCatcher.php',
+//    ],
+//];
 
 /* SAML Support
    Information about setting up an SAML Service Provider exists in the samples/saml-config directory. */
