@@ -1,4 +1,4 @@
-FROM php:8.4-apache
+FROM php:8.3-apache
 
 # Refer to https://tt-computing.com/docker-php8_0-lamp, Thanks!
   # Composer
@@ -15,10 +15,10 @@ FROM php:8.4-apache
   # RUN docker-php-ext-configure gd --with-jpeg
   # RUN docker-php-ext-install -j$(nproc) gd
   # PHP intl
-  RUN apt-get install -y libicu-dev
-  RUN docker-php-ext-install intl
+  # RUN apt-get install -y libicu-dev
+  # RUN docker-php-ext-install intl
   # PHP PDO MySQL
-  RUN docker-php-ext-install pdo_mysql
+  # RUN docker-php-ext-install pdo_mysql
   # RUN docker-php-ext-install exif
 
   RUN rm -rf /var/www/html/* && git clone https://github.com/INTER-Mediator/IMApp_Trial /var/www/html
