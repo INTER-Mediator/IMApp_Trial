@@ -11,15 +11,16 @@ FROM php:8.3-apache
   RUN apt-get update
   RUN apt-get install -y git
   # PHP GD
-  # RUN apt-get install -y zlib1g-dev libpng-dev libjpeg62-turbo-dev
-  # RUN docker-php-ext-configure gd --with-jpeg
+  RUN apt-get install -y zlib1g-dev libpng-dev libjpeg62-turbo-dev
+  RUN docker-php-ext-configure gd --with-jpeg
   # RUN docker-php-ext-install -j$(nproc) gd
+  RUN docker-php-ext-install gd
   # PHP intl
   # RUN apt-get install -y libicu-dev
   # RUN docker-php-ext-install intl
   # PHP PDO MySQL
   # RUN docker-php-ext-install pdo_mysql
-  # RUN docker-php-ext-install exif
+  RUN docker-php-ext-install exif
 
   RUN rm -rf /var/www/html/* && git clone https://github.com/INTER-Mediator/IMApp_Trial /var/www/html
   RUN chown -R www-data /var/www
