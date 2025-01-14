@@ -45,13 +45,13 @@
       "rm -rf node_modules vendor"
     ],
     "post-update-cmd": [
-      "cd ./vendor/inter-mediator/inter-mediator; ../../bin/npm install",
-      "cd ./vendor/inter-mediator/inter-mediator; ../../bin/npm update",
+      "cd ./vendor/inter-mediator/inter-mediator; npm install",
+      "cd ./vendor/inter-mediator/inter-mediator; npm update",
       "cd ./vendor/inter-mediator/inter-mediator/dist-docs; ./generateminifyjshere.sh",
       "cd ./lib; ./trialsetup.sh"
     ],
     "post-install-cmd": [
-      "cd ./vendor/inter-mediator/inter-mediator;  ../../bin/npm install",
+      "cd ./vendor/inter-mediator/inter-mediator; npm install",
       "cd ./vendor/inter-mediator/inter-mediator/dist-docs; ./generateminifyjshere.sh",
       "cd ./lib; ./trialsetup.sh"
     ]

@@ -10,7 +10,7 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync \
 
 # その他パッケージ、PHP拡張
 RUN apt-get update
-RUN apt-get install -y git
+RUN apt-get install -y git unzip npm
 # PHP intl
 RUN apt-get install -y libicu-dev
 RUN docker-php-ext-install intl
