@@ -1,9 +1,9 @@
 services:
   php-apache:
-    image: php-apache_im
+    image: ghcr.io/msyk/php-apache_im
     build:
       context: .
-      dockerfile: ./lib/docker/php-apache/Dockerfile
+      dockerfile: ./lib/docker/php-apache/Dockerfile_Prebuild
     platform: linux/amd64
     container_name: php-apache_im
     ports:
