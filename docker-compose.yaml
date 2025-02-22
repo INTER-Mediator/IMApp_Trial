@@ -1,5 +1,5 @@
 services:
-  php-apache:
+  php-apache_im:
     image: ghcr.io/msyk/php-apache_im:latest
     build:
       context: .
