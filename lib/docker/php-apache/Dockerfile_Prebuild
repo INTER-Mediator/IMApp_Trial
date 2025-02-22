@@ -1,5 +1,7 @@
 FROM ghcr.io/msyk/php-apache_im:latest
 
-RUN rm -rf /var/www/html/* && git clone https://github.com/INTER-Mediator/IMApp_Trial /var/www/html
+RUN rm -rf /var/www/html/*
+RUN git clone https://github.com/INTER-Mediator/IMApp_Trial /var/www/html
 RUN chown -R www-data /var/www
-RUN cd /var/www/html; composer update
+RUN cd /var/www/html
+RUN composer update

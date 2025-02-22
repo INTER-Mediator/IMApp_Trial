@@ -1,6 +1,6 @@
 services:
   php-apache_im:
-    image: ghcr.io/msyk/php-apache_im:latest
+#    image: ghcr.io/msyk/php-apache_im:latest
     build:
       context: .
       dockerfile: ./lib/docker/php-apache/Dockerfile_Prebuild
