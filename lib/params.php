@@ -34,8 +34,11 @@ $dbProtocol = 'HTTP';
 
 /* PDO awares below:
  */
-$dbDSN = 'mysql:host=db;port=3306;dbname=test_db;charset=utf8mb4';
-//$dbDSN = 'mysql:host=127.0.0.1;dbname=test_db;charset=utf8mb4';
+if (file_exists('/.dockerenv')) { // Running in a docker container.
+    $dbDSN = 'mysql:host=db;port=3306;dbname=test_db;charset=utf8mb4';
+} else {
+    $dbDSN = 'mysql:host=127.0.0.1;dbname=test_db;charset=utf8mb4';
+}
 //$dbDSN = 'mysql:unix_socket=/tmp/mysql.sock;dbname=test_db;charset=utf8mb4';
 $dbOption = array();
 
