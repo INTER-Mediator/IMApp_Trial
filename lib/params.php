@@ -195,6 +195,17 @@ $dontRecordChallenge = false;
 $dontRecordDownload = false;
 $dontRecordDownloadNoGet = false;
 
+/* Media File Support
+ * =================== */
+if (defined('PHP_OS_FAMILY') && (PHP_OS_FAMILY === 'Linux')) { // Suppose to running on Linux
+    $mediaRootDir = "/var/www/files";
+} else if (defined('PHP_OS_FAMILY') && (PHP_OS_FAMILY === 'Windows')) { // Suppose to running on Windows
+    $mediaRootDir = sys_get_temp_dir();
+} else { // Suppose to running on macOS
+    $mediaRootDir = "/tmp";
+}
+//$cacheMediaAccess = false;
+
 /* S3 Support
  * =================== */
 $accessRegion = "ap-northeast-1"; // This means the Tokyo region.
