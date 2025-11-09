@@ -1,21 +1,14 @@
 contexts:
-  - name: postalcode
-    view: postalcode
-    table: postalcode
-    key: id
-    records: 10
-    maxrecords: 100
-    paging: true
-    repeat-control: confirm-insert confirm-delete
-    query:
-      - field: f3
-        value: 1%
-        operator: LIKE
-    sort:
-      - field: f3
-        direction: ASC
-options:
-  - theme: default
+    -
+        name: postalcode
+        table: postalcode
+        view: postalcode
+        key: id
+        paging: true
+        records: 10
+        maxrecords: 1000
+options: {  }
 connection:
-  db-class: PDO
-debug: 2
+    db-class: PDO
+debug: false
+

@@ -193,19 +193,19 @@ $fmModDate = (new DateTime($modDate))->format('Y年m月d日');
         <tr>
             <td><a href="./src/page<?php echo $p;?>.html" target="_blank">page<?php echo $p;?>.htmlを表示する</a></td>
             <td>
-                <a href="./vendor/inter-mediator/inter-mediator/editors/pageedit.html?target=../../../../src/page<?php echo $p;?>.html"
+                <a href="./editors/pageedit.html?target=../src/page<?php echo $p;?>.html"
                    target="_blank">
                     page<?php echo $p;?>.htmlを編集する</a>
             </td>
             <td>
                 def<?php echo $p;?>.phpを編集する
-                [<a href="./vendor/inter-mediator/inter-mediator/editors/defedit.html?target=../../../../src/def<?php echo $p;?>.php"
+                [<a href="./editors/defedit.html?target=../src/def<?php echo $p;?>.php"
                     target="_blank">DefEditor</a>]
-                [<a href="/vendor/inter-mediator/inter-mediator/editors/pageedit.html?target=../../../../src/def<?php echo $p;?>.php"
+                [<a href="/editors/pageedit.html?target=../src/def<?php echo $p;?>.php"
                     target="_blank">ソース</a>]
             </td>
             <td>
-                <a href="./vendor/inter-mediator/inter-mediator/editors/pageedit.html?target=../../../../src/page<?php echo $p;?>.yaml"
+                <a href="./editors/pageedit.html?target=../src/page<?php echo $p;?>.yaml"
                    target="_blank">
                     page<?php echo $p;?>.yamlを編集する</a>
             </td>

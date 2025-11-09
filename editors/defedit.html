@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<!--
+/*
+ * INTER-Mediator
+ * Copyright (c) INTER-Mediator Directive Committee (http://inter-mediator.org)
+ * This project started at the end of 2009 by Masayuki Nii msyk@msyk.net.
+ *
+ * INTER-Mediator is supplied under MIT License.
+ * Please see the full license for details:
+ * https://github.com/INTER-Mediator/INTER-Mediator/blob/master/dist-docs/License.txt
+ */
+-->
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="defedit.css"/>
+    <link rel="shortcut icon" href="../vendor/inter-mediator/inter-mediator/dist-docs/vm-for-trial/im-icon.png" type="image/png"/>
+    <title>INTER-Mediator - Definition File Editor</title>
+    <script src="defedit.php"></script>
+    <script type="text/javascript">
+      INTERMediatorOnPage.doBeforeConstruct = function () {
+        const params = INTERMediatorOnPage.getURLParametersAsArray()
+        const contextsArray = ['contexts', 'relation', 'query', 'sort', 'default-values', 'validation',
+          'script', 'global', 'file-upload', 'send-mail', 'options', 'aliases', 'browser-compatibility', 'calculation',
+          'formatter', 'dbsettings', 'external-db', 'debug', 'local-context']
+        for (let i = 0; i < contextsArray.length; i++) {
+          INTERMediator.clearCondition(contextsArray[i])
+          INTERMediator.addCondition(contextsArray[i], {field: 'target', value: params.target})
+          INTERMediator.additionalFieldValueOnNewRecord[contextsArray[i]]
+            = {field: 'target', value: params.target}
+          INTERMediator.additionalFieldValueOnUpdate[contextsArray[i]]
+            = {field: 'target', value: params.target}
+          INTERMediator.additionalFieldValueOnDelete[contextsArray[i]]
+            = {field: 'target', value: params.target}
+        }
+        while (document.getElementById('deffile').firstChild) {
+          document.getElementById('deffile').removeChild(document.getElementById('deffile').lastChild);
+        }
+        document.getElementById('deffile').appendChild(document.createTextNode(params.target))
+        INTERMediator.ignoreOptimisticLocking = true
+      }
+      INTERMediatorOnPage.doAfterConstruct = function () {
+        const node = document.getElementById('container')
+        node.style.display = 'block'
+        document.title = 'Definition File Editor: ' + document.getElementById('deffile').textContent
+      }
+
+      function setDisplayLevel(level) {
+        let value = 'none'
+        if (level == 1) {
+          value = 'table-row'
+        }
+        const rootNode = document.getElementsByTagName('BODY')[0]
+        const nodes = INTERMediatorLib.getElementsByClassName(rootNode, 'advanced')
+        for (let i = 0; i < nodes.length; i++) {
+          nodes[i].style.display = value
+        }
+      }
+    </script>
+    <style>
+        INPUT {
+            font-size: 10pt;
+        }
+
+        TH {
+            color: #666666;
+        }
+
+        .advanced {
+            display: none;
+        }
+
+        .sub-title {
+            text-align: left;
+            border-bottom: solid 1px gray;
+        }
+
+        .firstcolumn {
+            min-width: 70px;
+        }
+    </style>
+</head>
+<body>
+<div id="nonsupportmessage" style="background-color:#333333">
+    <div style="text-align:center;color:yellow">
+        The definition file editor doesn't work initially for security reasons.<br>
+        If you want to use it, remove the comment before the IM_Entry function call of the defedit.php file.<br>
+        You shouldn't these files to be able to access from any client.<br>
+        The authentication is suitable way.
+        One typical setting is to set the .htaccess file in the editors folder.
+    </div>
+    <div style="text-align:center;color:yellow">
+        定義ファイルエディタは、セキュリティ上の理由から既定値では機能しないようになっています。<br>
+        機能させるためには、defedit.phpファイルのIM_Entry関数の前にあるコメントを消してください。<br>
+        その場合は、何らかの方法で、認証をかけるようにすべきです。たとえば、editorsフォルダ内に<br>
+        .htaccessファイルを配置して、Web認証を機能させるなどの手段が利用できます。<br>
+    </div>
+</div>
+<div id="container" style="display:none;">
+    <div style="float:right">
+        <button onclick="setDisplayLevel(1)">Show All</button>
+        <button onclick="setDisplayLevel(2)">Reduce</button>
+    </div>
+    <h1>Definition File Editor</h1>
+
+    <h2>Target Definition File</h2>
+
+    <p id="deffile"></p>
+
+    <h2>Contexts</h2>
+    <table>
+        <thead>
+
+        </thead>
+        <tbody>
+        <tr>
+            <th style="border-top: solid 2px black" class="title" class="title">name</th>
+            <td style="border-top: solid 2px black" colspan="2" class="title firstcolumn">
+                <input type="text" data-im="contexts@name"/>
+            </td>
+            <th style="border-top: solid 2px black">table</th>
+            <td style="border-top: solid 2px black"><input type="text" data-im="contexts@table"/></td>
+            <th style="border-top: solid 2px black">view</th>
+            <td style="border-top: solid 2px black"><input type="text" data-im="contexts@view"/></td>
+        </tr>
+        <tr>
+            <td class="firstcolumn"></td>
+            <th>key</th>
+            <td><input type="text" data-im="contexts@key"/></td>
+            <th>sequence</th>
+            <td><input type="text" data-im="contexts@sequence"/></td>
+            <th>records</th>
+            <td><input type="text" data-im="contexts@records"/></td>
+        </tr>
+        <tr>
+            <td class="firstcolumn"></td>
+            <th>maxrecords</th>
+            <td><input type="text" data-im="contexts@maxrecords"/></td>
+            <th>cache</th>
+            <td><input type="text" data-im="contexts@cache"/></td>
+            <th>soft-delete</th>
+            <td><input type="text" data-im="contexts@soft-delete"/></td>
+        </tr>
+        <tr>
+            <td class="firstcolumn"></td>
+            <th>count</th>
+            <td><input type="text" data-im="contexts@count"/></td>
+            <th>source</th>
+            <td><input type="text" data-im="contexts@source"/></td>
+            <th>ignoring-field</th>
+            <td><input type="text" data-im="contexts@ignoring-field"/></td>
+        </tr>
+        <tr>
+            <td class="firstcolumn"></td>
+            <th>numeric-fields</th>
+            <td><input type="text" data-im="contexts@numeric-fields"/></td>
+            <th>portals</th>
+            <td><input type="text" data-im="contexts@portals"/></td>
+            <th>sync-control</th>
+            <td><input type="text" data-im="contexts@sync-control"/></td>
+
+        </tr>
+        <tr>
+            <td class="firstcolumn"></td>
+            <th colspan="3" class="title">UI Control</th>
+            <td colspan="3">"data" and "appending-data" are not supported.</td>
+        </tr>
+        <tr>
+            <td class="firstcolumn"></td>
+            <th>paging</th>
+            <td><input type="text" data-im="contexts@paging"/></td>
+            <th>repeat-control</th>
+            <td><input type="text" data-im="contexts@repeat-control"/></td>
+            <th>navi-control</th>
+            <td><input type="text" data-im="contexts@navi-control"/></td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>insert (button name)</th>
+            <td><input type="text" data-im="contexts@buttonnames-insert"/></td>
+            <th>delete (button name)</th>
+            <td><input type="text" data-im="contexts@buttonnames-delete"/></td>
+            <th>copy (button name)</th>
+            <td><input type="text" data-im="contexts@buttonnames-copy"/></td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>navi-detail (button name)</th>
+            <td><input type="text" data-im="contexts@buttonnames-navi-detail"/></td>
+            <th>navi-back (button name)</th>
+            <td><input type="text" data-im="contexts@buttonnames-navi-back"/></td>
+            <th>navi-title</th>
+            <td><input type="text" data-im="contexts@navi-title"/></td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th colspan="6" class="title">Extension Settings</th>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>extending-class</th>
+            <td><input type="text" data-im="contexts@extending-class"/></td>
+            <th>post-repeater</th>
+            <td><input type="text" data-im="contexts@post-repeater"/></td>
+            <th>post-enclosure</th>
+            <td><input type="text" data-im="contexts@post-enclosure"/></td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>before-move-nextstep</th>
+            <td><input type="text" data-im="contexts@before-move-nextstep"/></td>
+            <th>post-query-stored</th>
+            <td><input type="text" data-im="contexts@post-query-stored"/></td>
+            <th>just-move-thisstep</th>
+            <td><input type="text" data-im="contexts@just-move-thisstep"/></td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th colspan="6" class="title">Settings for Post-only Mode</th>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>post-reconstruct</th>
+            <td><input type="text" data-im="contexts@post-reconstruct"/></td>
+            <th>post-dismiss-message</th>
+            <td><input type="text" data-im="contexts@post-dismiss-message"/></td>
+            <th>post-move-url</th>
+            <td><input type="text" data-im="contexts@post-move-url"/></td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th colspan="6" class="title">Aggregation Query Access</th>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>select</th>
+            <td colspan="5"><input type="text" size="100" data-im="contexts@aggregation-select"/></td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>from</th>
+            <td colspan="5"><input type="text" size="100" data-im="contexts@aggregation-from"/></td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>group-by</th>
+            <td colspan="5"><input type="text" size="100" data-im="contexts@aggregation-group-by"/></td>
+        </tr>
+        <tr>
+            <td class="firstcolumn"></td>
+            <th colspan="6" class="title">Query</th>
+        </tr>
+        <tr>
+            <td class="firstcolumn"></td>
+            <td colspan="6">
+                <table>
+                    <tr>
+                        <th>field</th>
+                        <td><input type="text" data-im="query@field"/></td>
+                        <th>operator</th>
+                        <td><input type="text" data-im="query@operator"/></td>
+                        <th>value</th>
+                        <td><input type="text" data-im="query@value"/></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td class="firstcolumn"></td>
+            <th colspan="6" class="title">Sorting</th>
+        </tr>
+        <tr>
+            <td class="firstcolumn"></td>
+            <td colspan="6">
+                <table>
+                    <tr>
+                        <th>field</th>
+                        <td><input type="text" data-im="sort@field"/></td>
+                        <th>direction</th>
+                        <td><input type="text" data-im="sort@direction"/></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td class="firstcolumn"></td>
+            <th colspan="6" class="title">Relationship</th>
+        </tr>
+        <tr>
+            <td class="firstcolumn"></td>
+            <td colspan="6">
+                <table>
+                    <tr>
+                        <th>foreign-key</th>
+                        <td><input type="text" data-im="relation@foreign-key"/></td>
+                        <th>join-field</th>
+                        <td><input type="text" data-im="relation@join-field"/></td>
+                        <th>operator</th>
+                        <td><input type="text" data-im="relation@operator"/></td>
+                        <th>portal</th>
+                        <td><input type="text" data-im="relation@portal"/></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th colspan="6" class="title">Default Values</th>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <td colspan="6">
+                <table>
+                    <tr>
+                        <th>field</th>
+                        <td><input type="text" data-im="default-values@field"/></td>
+                        <th>value</th>
+                        <td><input type="text" data-im="default-values@value"/></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th colspan="6" class="title">Validations</th>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <td colspan="6">
+                <table>
+                    <tr>
+                        <th>field</th>
+                        <td><input type="text" data-im="validation@field"/></td>
+                        <th>rule</th>
+                        <td><input type="text" data-im="validation@rule"/></td>
+                        <th>message</th>
+                        <td><input type="text" data-im="validation@message"/></td>
+                        <th>notify</th>
+                        <td><input type="text" data-im="validation@notify"/></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th colspan="6" class="title">Calculations</th>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <td colspan="6">
+                <table>
+                    <tr>
+                        <th>field</th>
+                        <td><input type="text" data-im="calculation@field"/></td>
+                        <th>expression</th>
+                        <td><input type="text" data-im="calculation@expression" size="100"/></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th colspan="6" class="title">Scripts</th>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <td colspan="6">
+                <table>
+                    <tr>
+                        <th>db-operation</th>
+                        <td><input type="text" data-im="script@db-operation"/></td>
+                        <th>situation</th>
+                        <td><input type="text" data-im="script@situation"/></td>
+                        <th>definition</th>
+                        <td><input type="text" data-im="script@definition"/></td>
+                        <th>parameter</th>
+                        <td><input type="text" data-im="script@parameter"/></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th colspan="6" class="title">Global Variables (FileMaker Server only)</th>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <td colspan="6">
+                <table>
+                    <tr>
+                        <th>db-operation</th>
+                        <td><input type="text" data-im="global@db-operation"/></td>
+                        <th>field</th>
+                        <td><input type="text" data-im="global@field"/></td>
+                        <th>value</th>
+                        <td><input type="text" data-im="global@value"/></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th colspan="6" class="title">File Uploading</th>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <td colspan="6">
+                <table>
+                    <tr>
+                        <th>field</th>
+                        <td><input type="text" data-im="file-upload@field"/></td>
+                        <th>context</th>
+                        <td><input type="text" data-im="file-upload@context"/></td>
+                        <th>container</th>
+                        <td><input type="text" data-im="file-upload@container"/></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th colspan="6" class="title">Authentication, Authorization and Security</th>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>media-handling</th>
+            <td><input type="text" data-im="contexts@authentication-media-handling"/></td>
+            <th>protect-writing</th>
+            <td><input type="text" data-im="contexts@protect-writing"/></td>
+            <th>protect-reading</th>
+            <td><input type="text" data-im="contexts@protect-reading"/></td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>all</th>
+            <td colspan="5">
+                user:<input type="text" data-im="contexts@authentication-all-user">
+                group:<input type="text" data-im="contexts@authentication-all-group">
+                target:<input type="text" data-im="contexts@authentication-all-target">
+                field:<input type="text" data-im="contexts@authentication-all-field">
+            </td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>read</th>
+            <td colspan="5">
+                user:<input type="text" data-im="contexts@authentication-load-user"/>
+                group:<input type="text" data-im="contexts@authentication-load-group"/>
+                target:<input type="text" data-im="contexts@authentication-load-target"/>
+                field:<input type="text" data-im="contexts@authentication-load-field"/>
+            </td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>update</th>
+            <td colspan="5">
+                user:<input type="text" data-im="contexts@authentication-update-user">
+                group:<input type="text" data-im="contexts@authentication-update-group">
+                target:<input type="text" data-im="contexts@authentication-update-target">
+                field:<input type="text" data-im="contexts@authentication-update-field">
+            </td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>create</th>
+            <td colspan="5">
+                user:<input type="text" data-im="contexts@authentication-new-user">
+                group:<input type="text" data-im="contexts@authentication-new-group">
+                target:<input type="text" data-im="contexts@authentication-new-target">
+                field:<input type="text" data-im="contexts@authentication-new-field">
+            </td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>delete</th>
+            <td colspan="5">
+                user:<input type="text" data-im="contexts@authentication-delete-user">
+                group:<input type="text" data-im="contexts@authentication-delete-group">
+                target:<input type="text" data-im="contexts@authentication-delete-target">
+                field:<input type="text" data-im="contexts@authentication-delete-field">
+            </td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th colspan="6" class="title">Sending Email or Messaging</th>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>driver</th>
+            <td><input type="text" data-im="contexts@messaging-driver"/></td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th colspan="6" class="sub-title">read</th>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>from</th>
+            <td><input type="text" data-im="contexts@messaging-read-from"/></td>
+            <th>to</th>
+            <td><input type="text" data-im="contexts@messaging-read-to"/></td>
+            <th>cc</th>
+            <td><input type="text" data-im="contexts@messaging-read-cc"/></td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>bcc</th>
+            <td><input type="text" data-im="contexts@messaging-read-bcc"/></td>
+            <th>subject</th>
+            <td><input type="text" data-im="contexts@messaging-read-subject"/></td>
+            <th>body</th>
+            <td><input type="text" data-im="contexts@messaging-read-body"/></td>
+        </tr>
+        <!--        <tr class="advanced">-->
+        <!--            <td class="firstcolumn"></td>-->
+        <!--            <th>from-constant</th>-->
+        <!--            <td><input type="text" data-im="contexts@messaging-read-from-constant"/></td>-->
+        <!--            <th>to-constant</th>-->
+        <!--            <td><input type="text" data-im="contexts@messaging-read-to-constant"/></td>-->
+        <!--            <th>cc-constant</th>-->
+        <!--            <td><input type="text" data-im="contexts@messaging-read-cc-constant"/></td>-->
+        <!--        </tr>-->
+        <!--        <tr class="advanced">-->
+        <!--            <td class="firstcolumn"></td>-->
+        <!--            <th>bcc-constant</th>-->
+        <!--            <td><input type="text" data-im="contexts@messaging-read-bcc-constant"/></td>-->
+        <!--            <th>subject-constant</th>-->
+        <!--            <td><input type="text" data-im="contexts@messaging-read-subject-constant"/></td>-->
+        <!--            <th>body-constant</th>-->
+        <!--            <td><input type="text" data-im="contexts@messaging-read-body-constant"/></td>-->
+        <!--        </tr>-->
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <!--            <th>body-template</th>-->
+            <!--            <td><input type="text" data-im="contexts@messaging-read-body-template"/></td>-->
+            <!--            <th>body-fields</th>-->
+            <!--            <td><input type="text" data-im="contexts@messaging-read-body-fields"/></td>-->
+            <th>template-context</th>
+            <td><input type="text" data-im="contexts@messaging-read-template-context"/></td>
+            <th>store</th>
+            <td><input type="text" data-im="contexts@messaging-read-store"/></td>
+            <th>f-option</th>
+            <td><input type="text" data-im="contexts@messaging-read-f-option"/></td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>body-wrap</th>
+            <td><input type="text" data-im="contexts@messaging-read-body-wrap"/></td>
+            <th>attachment</th>
+            <td><input type="text" data-im="contexts@messaging-read-attachment"/></td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th colspan="6" class="sub-title">update</th>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>from</th>
+            <td><input type="text" data-im="contexts@messaging-update-from"/></td>
+            <th>to</th>
+            <td><input type="text" data-im="contexts@messaging-update-to"/></td>
+            <th>cc</th>
+            <td><input type="text" data-im="contexts@messaging-update-cc"/></td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>bcc</th>
+            <td><input type="text" data-im="contexts@messaging-update-bcc"/></td>
+            <th>subject</th>
+            <td><input type="text" data-im="contexts@messaging-update-subject"/></td>
+            <th>body</th>
+            <td><input type="text" data-im="contexts@messaging-update-body"/></td>
+        </tr>
+        <!--        <tr class="advanced">-->
+        <!--            <td class="firstcolumn"></td>-->
+        <!--            <th>from-constant</th>-->
+        <!--            <td><input type="text" data-im="contexts@messaging-update-from-constant"/></td>-->
+        <!--            <th>to-constant</th>-->
+        <!--            <td><input type="text" data-im="contexts@messaging-update-to-constant"/></td>-->
+        <!--            <th>cc-constant</th>-->
+        <!--            <td><input type="text" data-im="contexts@messaging-update-cc-constant"/></td>-->
+        <!--        </tr>-->
+        <!--        <tr class="advanced">-->
+        <!--            <td class="firstcolumn"></td>-->
+        <!--            <th>bcc-constant</th>-->
+        <!--            <td><input type="text" data-im="contexts@messaging-update-bcc-constant"/></td>-->
+        <!--            <th>subject-constant</th>-->
+        <!--            <td><input type="text" data-im="contexts@messaging-update-subject-constant"/></td>-->
+        <!--            <th>body-constant</th>-->
+        <!--            <td><input type="text" data-im="contexts@messaging-update-body-constant"/></td>-->
+        <!--        </tr>-->
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <!--            <th>body-template</th>-->
+            <!--            <td><input type="text" data-im="contexts@messaging-update-body-template"/></td>-->
+            <!--            <th>body-fields</th>-->
+            <!--            <td><input type="text" data-im="contexts@messaging-update-body-fields"/></td>-->
+            <th>template-context</th>
+            <td><input type="text" data-im="contexts@messaging-update-template-context"/></td>
+            <th>store</th>
+            <td><input type="text" data-im="contexts@messaging-update-store"/></td>
+            <th>f-option</th>
+            <td><input type="text" data-im="contexts@messaging-update-f-option"/></td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>body-wrap</th>
+            <td><input type="text" data-im="contexts@messaging-update-body-wrap"/></td>
+            <th>attachment</th>
+            <td><input type="text" data-im="contexts@messaging-update-attachment"/></td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th colspan="6" class="sub-title">create</th>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>from</th>
+            <td><input type="text" data-im="contexts@messaging-create-from"/></td>
+            <th>to</th>
+            <td><input type="text" data-im="contexts@messaging-create-to"/></td>
+            <th>cc</th>
+            <td><input type="text" data-im="contexts@messaging-create-cc"/></td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>bcc</th>
+            <td><input type="text" data-im="contexts@messaging-create-bcc"/></td>
+            <th>subject</th>
+            <td><input type="text" data-im="contexts@messaging-create-subject"/></td>
+            <th>body</th>
+            <td><input type="text" data-im="contexts@messaging-create-body"/></td>
+        </tr>
+        <!--        <tr class="advanced">-->
+        <!--            <td class="firstcolumn"></td>-->
+        <!--            <th>from-constant</th>-->
+        <!--            <td><input type="text" data-im="contexts@messaging-create-from-constant"/></td>-->
+        <!--            <th>to-constant</th>-->
+        <!--            <td><input type="text" data-im="contexts@messaging-create-to-constant"/></td>-->
+        <!--            <th>cc-constant</th>-->
+        <!--            <td><input type="text" data-im="contexts@messaging-create-cc-constant"/></td>-->
+        <!--        </tr>-->
+        <!--        <tr class="advanced">-->
+        <!--            <td class="firstcolumn"></td>-->
+        <!--            <th>bcc-constant</th>-->
+        <!--            <td><input type="text" data-im="contexts@messaging-create-bcc-constant"/></td>-->
+        <!--            <th>subject-constant</th>-->
+        <!--            <td><input type="text" data-im="contexts@messaging-create-subject-constant"/></td>-->
+        <!--            <th>body-constant</th>-->
+        <!--            <td><input type="text" data-im="contexts@messaging-create-body-constant"/></td>-->
+        <!--        </tr>-->
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <!--            <th>body-template</th>-->
+            <!--            <td><input type="text" data-im="contexts@messaging-create-body-template"/></td>-->
+            <!--            <th>body-fields</th>-->
+            <!--            <td><input type="text" data-im="contexts@messaging-create-body-fields"/></td>-->
+            <th>template-context</th>
+            <td><input type="text" data-im="contexts@messaging-create-template-context"/></td>
+            <th>store</th>
+            <td><input type="text" data-im="contexts@messaging-create-store"/></td>
+            <th>f-option</th>
+            <td><input type="text" data-im="contexts@messaging-create-f-option"/></td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>body-wrap</th>
+            <td><input type="text" data-im="contexts@messaging-create-body-wrap"/></td>
+            <th>attachment</th>
+            <td><input type="text" data-im="contexts@messaging-create-attachment"/></td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th colspan="6" class="title">Database Settings just for this Context</th>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>db-class</th>
+            <td><input type="text" data-im="contexts@db-class"/></td>
+            <th>dsn</th>
+            <td><input type="text" data-im="contexts@dsn"/></td>
+            <th>option</th>
+            <td><input type="text" data-im="contexts@option"/></td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>database</th>
+            <td><input type="text" data-im="contexts@database"/></td>
+            <th>user</th>
+            <td><input type="text" data-im="contexts@user"/></td>
+            <th>password</th>
+            <td><input type="text" data-im="contexts@password"/></td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>server</th>
+            <td><input type="text" data-im="contexts@server"/></td>
+            <th>port</th>
+            <td><input type="text" data-im="contexts@port"/></td>
+            <th>protocol</th>
+            <td><input type="text" data-im="contexts@protocol"/></td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>datatype</th>
+            <td><input type="text" data-im="contexts@datatype"/></td>
+            <th>cert-verifying</th>
+            <td><input type="text" data-im="contexts@cert-verifying"/></td>
+            <td colspan="2" style="text-align:right"></td>
+        </tr>
+        </tbody>
+    </table>
+    <h2>Options</h2>
+    <table>
+        <tr>
+            <td class="firstcolumn"></td>
+            <th>theme</th>
+            <td><input type="text" data-im="options@theme"/></td>
+            <th>media-root-dir</th>
+            <td><input type="text" data-im="options@media-root-dir"/></td>
+            <!--            <th>media-context</th>-->
+            <!--            <td><input type="text" data-im="options@media-context"/></td>-->
+            <th>credit-including</th>
+            <td><input type="text" data-im="options@credit-including"/></td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <!--            <th>separator</th>-->
+            <!--            <td><input type="text" data-im="options@separator"/></td>-->
+            <th>transaction</th>
+            <td><input type="text" data-im="options@transaction"/></td>
+            <th>app-locale</th>
+            <td><input type="text" data-im="options@app-locale"/></td>
+            <th>app-currency</th>
+            <td colspan="3"><input type="text" data-im="options@app-currency"/></td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th colspan="6" class="title">Authentication and Authorization</th>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>user-table</th>
+            <td><input type="text" data-im="options@authentication-user-table"/></td>
+            <th>group-table</th>
+            <td><input type="text" data-im="options@authentication-group-table"/></td>
+            <th>corresponding-table</th>
+            <td><input type="text" data-im="options@authentication-corresponding-table"/></td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>challenge-table</th>
+            <td><input type="text" data-im="options@authentication-challenge-table"/></td>
+            <th>authexpired</th>
+            <td><input type="text" data-im="options@authentication-authexpired"/></td>
+            <th>storing</th>
+            <td><input type="text" data-im="options@authentication-storing"/></td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>realm</th>
+            <td><input type="text" data-im="options@authentication-realm"/></td>
+            <th>email-as-username</th>
+            <td><input type="text" data-im="options@authentication-email-as-username"/></td>
+            <th>user</th>
+            <td><input type="text" data-im="options@authentication-user"/></td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>group</th>
+            <td><input type="text" data-im="options@authentication-group"/></td>
+            <th>issuedhash-dsn</th>
+            <td><input type="text" data-im="options@authentication-issuedhash-dsn"/></td>
+            <th>password-policy</th>
+            <td><input type="text" data-im="options@authentication-password-policy"/></td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th colspan="6" class="title">SMTP Settings</th>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>server</th>
+            <td><input type="text" data-im="options@smtp-server"/></td>
+            <th>port</th>
+            <td><input type="text" data-im="options@smtp-port"/></td>
+            <th>encryption</th>
+            <td><input type="text" data-im="options@smtp-encryption"/></td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>username</th>
+            <td><input type="text" data-im="options@smtp-username"/></td>
+            <th>password</th>
+            <td colspan="3"><input type="text" data-im="options@smtp-password"/></td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th colspan="6" class="title">Importing</th>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>1st-line</th>
+            <td><input type="text" data-im="options@import-1st-line"/></td>
+            <th>skip-lines</th>
+            <td><input type="text" data-im="options@import-skip-lines"/></td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>format</th>
+            <td><input type="text" data-im="options@import-format"/></td>
+            <th>use-replace</th>
+            <td><input type="text" data-im="options@import-use-replace"/></td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th>convert-number</th>
+            <td><input type="text" data-im="options@import-convert-number"/></td>
+            <th>convert-date</th>
+            <td><input type="text" data-im="options@import-convert-date"/></td>
+            <th>convert-datetime</th>
+            <td><input type="text" data-im="options@import-convert-datetime"/></td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th colspan="6" class="title">Aliases</th>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <td colspan="6">
+                <table>
+                    <tr>
+                        <th>alias</th>
+                        <td><input type="text" data-im="aliases@alias"/></td>
+                        <th>original term</th>
+                        <td><input type="text" data-im="aliases@original"/></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th colspan="6" class="title">Formatters</th>
+        </tr>
+        <tr>
+            <td class="firstcolumn"></td>
+            <td colspan="6">
+                <table>
+                    <tr>
+                        <th>field</th>
+                        <td><input type="text" data-im="formatter@field"/></td>
+                        <th>converter-class</th>
+                        <td><input type="text" data-im="formatter@converter-class"/></td>
+                        <th>parameter</th>
+                        <td><input type="text" data-im="formatter@parameter"/></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th colspan="6" class="title">Browser Compatibilities</th>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <td colspan="6">
+                <table>
+                    <tr>
+                        <th>browser-agent</th>
+                        <td><input type="text" data-im="browser-compatibility@agent"/></td>
+                        <th>version</th>
+                        <td><input type="text" data-im="browser-compatibility@version"/></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <th colspan="6" class="title">Local Context</th>
+        </tr>
+        <tr class="advanced">
+            <td class="firstcolumn"></td>
+            <td colspan="6">
+                <table>
+                    <tr>
+                        <th>key</th>
+                        <td><input type="text" data-im="local-context@key"/></td>
+                        <th>value</th>
+                        <td><input type="text" data-im="local-context@value"/></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <h2>Detabase Settings</h2>
+    <table>
+        <tr>
+            <th>db-class</th>
+            <td><input type="text" data-im="dbsettings@db-class"/></td>
+            <th>dsn</th>
+            <td><input type="text" data-im="dbsettings@dsn"/></td>
+            <th>option</th>
+            <td><input type="text" data-im="dbsettings@option"/></td>
+            <th>database</th>
+            <td><input type="text" data-im="dbsettings@database"/></td>
+        </tr>
+        <tr>
+            <th>user</th>
+            <td><input type="text" data-im="dbsettings@user"/></td>
+            <th>password</th>
+            <td><input type="text" data-im="dbsettings@password"/></td>
+            <th>server</th>
+            <td><input type="text" data-im="dbsettings@server"/></td>
+            <th>port</th>
+            <td><input type="text" data-im="dbsettings@port"/></td>
+        </tr>
+        <tr>
+            <th>protocol</th>
+            <td><input type="text" data-im="dbsettings@protocol"/></td>
+            <th>datatype</th>
+            <td><input type="text" data-im="dbsettings@datatype"/></td>
+            <th>cert-verifying</th>
+            <td><input type="text" data-im="dbsettings@cert-verifying"/></td>
+        </tr>
+    </table>
+
+    <h2>Debug</h2>
+
+    <div data-im-control="enclosure">
+        <div data-im-control="repeater">
+            <input type="text" data-im="debug@debug"/>
+        </div>
+    </div>
+</div>
+</body>
+</html>
