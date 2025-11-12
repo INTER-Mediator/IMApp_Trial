@@ -31,7 +31,7 @@ IM_Entry(
             array(
                 'field' => 'information@lastupdated',
                 'converter-class' => 'MySQLDateTime',
-                'parameter'=>'%Y年%m月%d日',
+                'parameter'=>'Y年m月d日',
             )
         ),
     ),

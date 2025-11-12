@@ -44,10 +44,15 @@ $fmModDate = (new DateTime($modDate))->format('Y年m月d日');
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>INTER-Mediator <?php echo htmlspecialchars($version, ENT_QUOTES, 'UTF-8'); ?> - VM for Trial</title>
     <script type="text/javascript" src="include_MySQL.php"></script>
     <script type="text/javascript" src="index.js"></script>
+    <style>
+        .code {
+            background-color: #DDDDDD;
+            padding: 8px;
+        }
+    </style>
 </head>
 <body style="margin: 8px">
 <h1>INTER-Mediator <?php echo htmlspecialchars($version, ENT_QUOTES, 'UTF-8'); ?> - VM for Trial</h1>
@@ -230,5 +235,12 @@ $fmModDate = (new DateTime($modDate))->format('Y年m月d日');
 （リンクにファイル番号がありませんが、ページファイル名と同じ名前の.yamlファイルを参照します）
 </code></pre>
 </div>
+<h3>PHPの定義ファイルをYAMLに変換する</h3>
+<p>
+    タイトルのようなアプリケーションを作りました。<a href="im_yaml/index.php" target="_blank">こちら</a>をクリックするとご利用できます。
+    なお、このアプリケーションはevalを使ってPHPベースの定義ファイルを解析しているため、セキュリティ上の問題が懸念されます。
+    決して、誰もがアクセスできるところにこのアプリケーションを置かないようにしてください。
+    ご自分で利用できる範囲内に留めておいてください。なお、このトライアル環境を、自分のデスクトップのDockerで稼働させる限りは、他の人が利用はできないはずです。
+</p>
 </body>
 </html>
