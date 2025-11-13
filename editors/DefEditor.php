@@ -24,7 +24,7 @@ function IM_Dummy_Entry($dataSource, $options, $dbSpecification, $debug = false)
     $globalDebug = $debug;
 }
 
-function getValueFromArray($ar, $index1, $index2 = null, $index3 = null): string
+function getValueFromArray($ar, $index1, $index2 = null, $index3 = null): ?string
 {
     $value = null;
     if ($index1 !== null && $index2 !== null && $index3 !== null) {
