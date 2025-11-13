@@ -10,7 +10,7 @@
  * https://github.com/INTER-Mediator/INTER-Mediator/blob/master/dist-docs/License.txt
  */
 -->
-<html>
+<html lang="ja">
 <head>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" type="text/css" href="defedit.css"/>
@@ -47,7 +47,7 @@
 
       function setDisplayLevel(level) {
         let value = 'none'
-        if (level == 1) {
+        if (level === 1) {
           value = 'table-row'
         }
         const rootNode = document.getElementsByTagName('BODY')[0]
@@ -86,7 +86,7 @@
         The definition file editor doesn't work initially for security reasons.<br>
         If you want to use it, remove the comment before the IM_Entry function call of the defedit.php file.<br>
         You shouldn't these files to be able to access from any client.<br>
-        The authentication is suitable way.
+        The authentication is a suitable way.
         One typical setting is to set the .htaccess file in the editors folder.
     </div>
     <div style="text-align:center;color:yellow">
@@ -114,9 +114,9 @@
         </thead>
         <tbody>
         <tr>
-            <th style="border-top: solid 2px black" class="title" class="title">name</th>
+            <th style="border-top: solid 2px black" class="title">name</th>
             <td style="border-top: solid 2px black" colspan="2" class="title firstcolumn">
-                <input type="text" data-im="contexts@name"/>
+                <input type="text" data-im="contexts@name">
             </td>
             <th style="border-top: solid 2px black">table</th>
             <td style="border-top: solid 2px black"><input type="text" data-im="contexts@table"/></td>

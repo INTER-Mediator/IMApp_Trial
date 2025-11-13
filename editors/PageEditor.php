@@ -19,7 +19,6 @@ namespace INTERMediator\DB;
 class PageEditor extends DBClass
 {
     private $recordCount;
-    private $isRequiredUpdated = false;
     private $updatedRecord = null;
 
     public function readFromDB():?array

@@ -12,6 +12,9 @@
   "prefer-stable": true,
   "require": {
     "php": ">=8.1.0",
+    "ext-curl": "*",
+    "ext-libxml": "*",
+    "ext-simplexml": "*",
     "inter-mediator/inter-mediator": "dev-master"
   },
   "autoload": {},
@@ -28,21 +31,26 @@
   "authors": [
     {
       "name": "INTER-Mediator Directive Committee",
-      "homepage": "http://inter-mediator.org/"
+      "homepage": "https://inter-mediator.org/"
     }
   ],
   "support": {
     "community-jp": "https://www.facebook.com/groups/233378356708157/",
     "community-en": "https://www.facebook.com/groups/254446237922985/",
     "source": "https://github.com/INTER-Mediator/IMApp_SimpleBBS",
-    "manual": "http://inter-mediator.info/"
+    "manual": "https://inter-mediator.info/"
   },
   "scripts": {
     "test": [
       "The software test is very important activity for the quality assuarance."
     ],
     "clear": [
-      "rm -rf node_modules vendor"
+      "rm -rf vendor",
+      "cd ./vendor/inter-mediator/inter-mediator && rm -rf node_modules"
+    ],
+    "clean": [
+      "rm -rf vendor",
+      "cd ./vendor/inter-mediator/inter-mediator && rm -rf node_modules"
     ],
     "post-update-cmd": [
       "cd ./vendor/inter-mediator/inter-mediator; npm install",

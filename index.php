@@ -7,6 +7,8 @@
  */  -->
 <?php
 // Initialize global variables.
+use INTERMediator\Data_Converter\FMDateTime;
+
 $dbProtocol = "";
 $dbServer = "";
 $dbPort = "";
@@ -123,7 +125,7 @@ $fmModDate = (new DateTime($modDate))->format('Y年m月d日');
                 $output = '、FileMaker=2015年7月11日以前';
             }
             require "{$appRoot}" . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
-            $converter = new \INTERMediator\Data_Converter\FMDateTime();
+            $converter = new FMDateTime();
             error_reporting(0);
             foreach ($parsedData->resultset->record->field as $key => $field) {
                 if ((string)$field->attributes()->name === 'lastupdated') {
@@ -170,9 +172,9 @@ $fmModDate = (new DateTime($modDate))->format('Y年m月d日');
 <ul>
     <li><a href="info.php" target="_blank">phpinfo()関数の実行</a>
     </li>
-    <li><a href="https://inter-mediator.com/" target="_blank">INTER-Mediator Web Site</a></li>
-    <li><a href="http://inter-mediator.info/" target="_blank">INTER-Mediator Manual Site</a></li>
-    <li><a href="http://inter-mediator.org/" target="_blank">INTER-Mediator Directive Committee</a></li>
+    <li><a href="https://inter-mediator.com/" target="_blank">INTER-Mediator Website</a></li>
+    <li><a href="https://inter-mediator.info/" target="_blank">INTER-Mediator Manual Site</a></li>
+    <li><a href="https://inter-mediator.org/" target="_blank">INTER-Mediator Directive Committee</a></li>
 </ul>
 
 

@@ -24,7 +24,7 @@ function IM_Dummy_Entry($dataSource, $options, $dbSpecification, $debug = false)
     $globalDebug = $debug;
 }
 
-function getValueFromArray($ar, $index1, $index2 = null, $index3 = null)
+function getValueFromArray($ar, $index1, $index2 = null, $index3 = null): string
 {
     $value = null;
     if ($index1 !== null && $index2 !== null && $index3 !== null) {
@@ -52,7 +52,7 @@ function getValueFromArray($ar, $index1, $index2 = null, $index3 = null)
     return $value;
 }
 
-function changeIncludeIMPath($src, $validStatement)
+function changeIncludeIMPath($src, $validStatement): string
 {
     $includeFunctions = array('require_once', 'include_once', 'require', 'include');
     foreach ($includeFunctions as $targetFunction) {
@@ -61,12 +61,12 @@ function changeIncludeIMPath($src, $validStatement)
             return preg_replace($pattern, $validStatement, $src);
         }
     }
+    return "";
 }
 
 class DefEditor extends DBClass
 {
     private $recordCount;
-    private $isRequiredUpdated = false;
     private $updatedRecord = null;
 
     private $spacialValue = array('IM_TODAY');
