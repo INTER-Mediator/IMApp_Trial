@@ -206,7 +206,7 @@ $fmModDate = (new DateTime($modDate))->format('Y年m月d日');
                 def<?php echo $p;?>.phpを編集する
                 [<a href="./editors/defedit.html?target=../src/def<?php echo $p;?>.php"
                     target="_blank">DefEditor</a>]
-                [<a href="/editors/pageedit.html?target=../src/def<?php echo $p;?>.php"
+                [<a href="./editors/pageedit.html?target=../src/def<?php echo $p;?>.php"
                     target="_blank">ソース</a>]
             </td>
             <td>
