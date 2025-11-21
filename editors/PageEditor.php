@@ -21,6 +21,8 @@ class PageEditor extends DBClass
     private $recordCount;
     private $updatedRecord = null;
 
+    private $isRequiredUpdated = false;
+
     public function readFromDB():?array
     {
         $dataSourceName = $this->dbSettings->getDataSourceName();
