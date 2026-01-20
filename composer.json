@@ -58,13 +58,13 @@
       "cd ./vendor/inter-mediator/inter-mediator; npm update",
       "cd ./vendor/inter-mediator/inter-mediator/dist-docs; ./generateminifyjshere.sh",
       "cd ./im_yaml; composer update",
-      "cd ./lib; source trialsetup.sh"
+      "cd ./lib; ./trialsetup.sh"
     ],
     "post-install-cmd": [
       "cd ./vendor/inter-mediator/inter-mediator; npm install",
       "cd ./vendor/inter-mediator/inter-mediator/dist-docs; ./generateminifyjshere.sh",
       "cd ./im_yaml; composer update",
-      "cd ./lib; source trialsetup.sh"
+      "cd ./lib; ./trialsetup.sh"
     ]
   },
   "config": {
