@@ -23,3 +23,7 @@ cd vendor/inter-mediator
 if [ ! -e "vendor" ]; then
   ln -s ../ vendor
 fi
+cd cd samples
+if [ ! -e "vendor" ]; then
+  ln -s ../../ vendor
+fi
