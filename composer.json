@@ -15,7 +15,8 @@
     "ext-curl": "*",
     "ext-libxml": "*",
     "ext-simplexml": "*",
-    "inter-mediator/inter-mediator": "dev-master"
+    "inter-mediator/inter-mediator": "dev-master",
+    "inter-mediator/samples": "dev-main"
   },
   "autoload": {},
   "description": "INTER-Mediator Trial Application, also suitable for studying INTER-Mediator",

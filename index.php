@@ -146,7 +146,7 @@ $fmModDate = (new DateTime($modDate))->format('Y年m月d日');
 <h2>リンク</h2>
 
 <h3>
-    <a href="./vendor/inter-mediator/inter-mediator/samples/"
+    <a href="./vendor/inter-mediator/samples/"
        target="_blank">サンプルプログラム</a>
 </h3>
 <ul data-im-control="ignore_enc_rep">
