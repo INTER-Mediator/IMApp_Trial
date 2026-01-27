@@ -11,16 +11,16 @@ function devide4($a, $b, $c, $d)
 $converted = '';
 $converted2 = '';
 $ar = '';
-if (isset($_POST['php'])) {
-    if (file_exists("doesnt_work")){
-        $ar = $_POST['php'];
-        $converted = "This Application doesn't work here. Please refer the repository (https://github.com/inter-mediator/IMApp_Trial) for more details.";
-        $converted2 = $converted;
-    }else {
+if (file_exists("doesnt_work")) {
+    $ar = $_POST['php'];
+    $converted = "This Application doesn't work here. Please refer the repository (https://github.com/inter-mediator/IMApp_Trial) for more details.";
+    $converted2 = $converted;
+} else {
+    $dataKeys = ['contexts', 'options', 'connection', 'debug'];
+    if (isset($_POST['toYAML'])) {
         $data = trim(str_replace("IM_Entry", "devide4", $_POST['php']));
         $data = eval("return {$data};");
 
-        $dataKeys = ['contexts', 'options', 'connection', 'debug'];
         $ar = var_export($data[0], true);
         $ar = $ar . "," . "\n" . var_export($data[1], true);
         $ar = $ar . "," . "\n" . var_export($data[2], true);
@@ -36,6 +36,15 @@ if (isset($_POST['php'])) {
         $converted2 = $converted;
         $converted = Yaml::dump($converted, 5, 2, Yaml::DUMP_COMPACT_NESTED_MAPPING);
         $converted2 = json_encode($converted2, JSON_PRETTY_PRINT);
+    } else if (isset($_POST['toPHP'])) {
+        $converted = $_POST['yaml'];
+        $code = Yaml::parse($converted);
+        $ar = "IM_Entry(\n"
+                . var_export($code[$dataKeys[0]], true) . ",\n"
+                . var_export($code[$dataKeys[1]], true) . ",\n"
+                . var_export($code[$dataKeys[2]], true) . ",\n"
+                . var_export($code[$dataKeys[3]], true) . "\n);";
+        $converted2 = json_encode($code, JSON_PRETTY_PRINT);
     }
 }
 ?>
@@ -63,8 +72,9 @@ if (isset($_POST['php'])) {
             <textarea name="php"><?php echo $ar; ?></textarea>
         </div>
         <div style="margin-top: 200px">
-            <button>Convert→
-            </button>
+            <button type="submit" name="toYAML">Convert→</button>
+            <div style="height: 20px"></div>
+            <button type="submit" name="toPHP">←Convert</button>
         </div>
         <div>
             <h2>YAML</h2>
