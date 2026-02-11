@@ -19,8 +19,7 @@ mv "tempfile" "pageedit.php"
 
 # Pass to the INTER-Mediator for Samples
 cd "${appRootDir}"
-cd "vendor/samples"
-if [ -e "vendor" ]; then
-  rm -rf "vendor"
+cd "vendor/inter-mediator/samples"
+if [ ! -e "vendor" ]; then
+  ln -s ../../ vendor
 fi
-ln -s ../../ vendor
