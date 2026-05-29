@@ -1,7 +1,7 @@
 {
   "name": "inter-mediator/im-trial",
-  "version": "2",
-  "time": "2022-01-14",
+  "version": "3",
+  "time": "2026-05-29",
   "repositories": [
     {
       "type": "git",
@@ -15,8 +15,8 @@
     "ext-curl": "*",
     "ext-libxml": "*",
     "ext-simplexml": "*",
-    "inter-mediator/inter-mediator": "dev-master",
-    "inter-mediator/samples": "dev-main"
+    "inter-mediator/inter-mediator": "15",
+    "inter-mediator/samples": "15"
   },
   "autoload": {},
   "description": "INTER-Mediator Trial Application, also suitable for studying INTER-Mediator",
