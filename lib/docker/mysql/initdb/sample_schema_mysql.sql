@@ -787,27 +787,28 @@ CREATE TABLE registeredpks
 
 CREATE TABLE authuser
 (
-    id              INT AUTO_INCREMENT,
-    username        VARCHAR(64),
-    hashedpasswd    VARCHAR(72),
-    realname        VARCHAR(100),
-    email           VARCHAR(100),
-    address         VARCHAR(200),
-    birthdate       CHAR(8),
-    gender          CHAR(1),
-    sub             VARCHAR(255),
-    limitdt         DATETIME,
-    initialPassword VARCHAR(30),
-    publicKey             TEXT,
-    publicKeyCredentialId TEXT,
-    secret          TEXT,
-    accessToken     VARCHAR(64),
+    id                    INT AUTO_INCREMENT, # Primary key field for this table
+    username              VARCHAR(100),       # The username that user enters, This should be unique
+    hashedpasswd          VARCHAR(72),        # The hash of password
+    realname              VARCHAR(100),       # The real name
+    email                 VARCHAR(100),       # The email address
+    address               VARCHAR(200),       # The real address
+    birthdate             CHAR(8),            # My Number Card
+    gender                CHAR(1),            # My Number Card
+    sub                   VARCHAR(255),       # For OAuth2, My Number Card
+    limitdt               DATETIME,           # The limit for continuing authentication on SAML/OAuth2
+    initialPassword       VARCHAR(30),        # Storing for the initial password
+    publicKey             TEXT,               # For Passkey Authentication
+    publicKeyCredentialId TEXT,               # For Passkey Authentication
+    secret                TEXT,               # For Google Authenticator
+    accessToken           VARCHAR(64),        # For API, the length depends on your implementation.
+    inactive              BOOLEAN,            # Inhibit to log in.
     PRIMARY KEY (id)
 ) CHARACTER SET utf8mb4,
   COLLATE utf8mb4_unicode_ci
   ENGINE = InnoDB;
 
-CREATE INDEX authuser_username
+CREATE UNIQUE INDEX authuser_username
     ON authuser (username);
 CREATE INDEX authuser_email
     ON authuser (email);
@@ -1112,6 +1113,24 @@ CREATE TABLE operationlog
   ENGINE = InnoDB;
 # In case of real deployment, some indices are required for quick operations.
 
+# Collecting failed login information.
+CREATE TABLE authfail
+(
+    id       INT AUTO_INCREMENT,
+    dt       TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ip       VARCHAR(39),
+    username VARCHAR(64),
+    tw       INT,
+    PRIMARY KEY (id)
+) CHARACTER SET utf8mb4,
+  COLLATE utf8mb4_unicode_ci
+  ENGINE = InnoDB;
+
+CREATE INDEX authfail_dt ON authfail (dt);
+CREATE INDEX authfail_ip ON authfail (ip);
+CREATE INDEX authfail_tw ON authfail (tw);
+CREATE INDEX authfail_username ON authfail (username);
+
 CREATE TABLE testtable
 (
     id      INT AUTO_INCREMENT,
@@ -1127,7 +1146,7 @@ CREATE TABLE testtable
     time2   Time,
     ts1     Timestamp    NOT NULL DEFAULT '2001-01-01 00:00:00',
     ts2     Timestamp             DEFAULT '2001-01-01 00:00:00', # Required default value
-    vc1     VARCHAR(100) NOT NULL DEFAULT '',
+        vc1     VARCHAR(100) NOT NULL DEFAULT '',
     vc2     VARCHAR(100),
     vc3     VARCHAR(100),
     text1   TEXT,

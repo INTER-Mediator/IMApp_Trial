@@ -1,7 +1,7 @@
 {
   "name": "inter-mediator/im-trial",
-  "version": "3",
-  "time": "2026-05-29",
+  "version": "16",
+  "time": "2026-06-06",
   "repositories": [
     {
       "type": "git",
@@ -15,8 +15,8 @@
     "ext-curl": "*",
     "ext-libxml": "*",
     "ext-simplexml": "*",
-    "inter-mediator/inter-mediator": "15",
-    "inter-mediator/samples": "15"
+    "inter-mediator/inter-mediator": "dev-master",
+    "inter-mediator/samples": "dev-main"
   },
   "autoload": {},
   "description": "INTER-Mediator Trial Application, also suitable for studying INTER-Mediator",
@@ -43,34 +43,20 @@
   },
   "scripts": {
     "test": [
-      "The software test is very important activity for the quality assuarance."
+      "The software test is very important activity for the quality assurance."
     ],
     "clear": [
-      "rm -rf vendor",
-      "cd ./vendor/inter-mediator/inter-mediator && rm -rf node_modules"
+      "INTERMediator\\Composer\\InstallerPlugin::onClear"
     ],
     "clean": [
-      "rm -rf vendor",
-      "cd ./vendor/inter-mediator/inter-mediator && rm -rf node_modules"
-    ],
-    "post-update-cmd": [
-      "cd ./vendor/inter-mediator/inter-mediator; npm install",
-      "cd ./vendor/inter-mediator/inter-mediator; npm update",
-      "cd ./vendor/inter-mediator/inter-mediator/dist-docs; ./generateminifyjshere.sh",
-      "cd ./im_yaml; composer update",
-      "cd ./lib; ./trialsetup.sh"
-    ],
-    "post-install-cmd": [
-      "cd ./vendor/inter-mediator/inter-mediator; npm install",
-      "cd ./vendor/inter-mediator/inter-mediator/dist-docs; ./generateminifyjshere.sh",
-      "cd ./im_yaml; composer update",
-      "cd ./lib; ./trialsetup.sh"
+      "INTERMediator\\Composer\\InstallerPlugin::onClear"
     ]
   },
   "config": {
     "allow-plugins": {
       "simplesamlphp/composer-module-installer": true,
       "simplesamlphp/composer-xmlprovider-installer": true,
+      "inter-mediator/inter-mediator": true,
       "mouf/nodejs-installer": true
     }
   }
