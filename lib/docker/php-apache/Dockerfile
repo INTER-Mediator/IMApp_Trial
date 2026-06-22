@@ -3,7 +3,7 @@ FROM --platform=linux/x86_64 php:8.4-apache
 # Refer to https://tt-computing.com/docker-php8_0-lamp, Thanks!
 
 # Composer
-ARG composer_ver=2.8.4
+ARG composer_ver=2.10.1
 COPY --from=ghcr.io/mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 RUN chmod +x /usr/local/bin/install-php-extensions && sync \
 && install-php-extensions @composer-${composer_ver}
