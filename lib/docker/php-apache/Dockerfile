@@ -25,4 +25,4 @@ RUN docker-php-ext-install pdo_mysql
 
 RUN rm -rf /var/www/html/* && git clone https://github.com/INTER-Mediator/IMApp_Trial /var/www/html
 RUN chown -R www-data /var/www
-RUN cd /var/www/html; composer update
+RUN cd /var/www/html; composer install
