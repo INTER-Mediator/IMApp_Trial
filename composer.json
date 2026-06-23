@@ -13,8 +13,7 @@
   "require": {
     "php": ">=8.1.0",
     "inter-mediator/inter-mediator": "dev-master",
-    "inter-mediator/samples": "dev-main",
-    "composer/composer": "^2"
+    "inter-mediator/samples": "dev-main"
   },
   "autoload": {},
   "description": "INTER-Mediator Trial Application, also suitable for studying INTER-Mediator",

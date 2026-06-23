@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9f6dcb3eae072c2022588e467096928f",
+    "content-hash": "c8c2d60c50b7535297328b5e4a22241a",
     "packages": [
         {
             "name": "async-aws/core",
@@ -1948,17 +1948,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/INTER-Mediator/INTER-Mediator.git",
-                "reference": "2fdf9b9a2efdefc37faa18fafc1d8ff95bded675"
+                "reference": "60a5c76a2fe7b661d2897aec23d4bce2a6ff4b39"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/INTER-Mediator/INTER-Mediator/zipball/2fdf9b9a2efdefc37faa18fafc1d8ff95bded675",
-                "reference": "2fdf9b9a2efdefc37faa18fafc1d8ff95bded675",
+                "url": "https://api.github.com/repos/INTER-Mediator/INTER-Mediator/zipball/60a5c76a2fe7b661d2897aec23d4bce2a6ff4b39",
+                "reference": "60a5c76a2fe7b661d2897aec23d4bce2a6ff4b39",
                 "shasum": ""
             },
             "require": {
                 "aws/aws-sdk-php": ">=3",
-                "composer-plugin-api": "^2.0",
+                "composer-plugin-api": "^2",
+                "composer/composer": "^2",
                 "ext-curl": "*",
                 "ext-exif": "*",
                 "ext-fileinfo": "*",
@@ -1986,7 +1987,6 @@
                 "web-token/jwt-framework": ">=3.4"
             },
             "require-dev": {
-                "composer/composer": "^2.6",
                 "phpstan/phpstan": "^2.1",
                 "phpunit/phpunit": "^10 || ^11"
             },
