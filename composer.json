@@ -12,9 +12,6 @@
   "prefer-stable": true,
   "require": {
     "php": ">=8.1.0",
-    "ext-curl": "*",
-    "ext-libxml": "*",
-    "ext-simplexml": "*",
     "inter-mediator/inter-mediator": "dev-master",
     "inter-mediator/samples": "dev-main"
   },
@@ -56,8 +53,7 @@
     "allow-plugins": {
       "simplesamlphp/composer-module-installer": true,
       "simplesamlphp/composer-xmlprovider-installer": true,
-      "inter-mediator/inter-mediator": true,
-      "mouf/nodejs-installer": true
+      "inter-mediator/inter-mediator": true
     }
   }
 }
