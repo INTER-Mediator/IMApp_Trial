@@ -8,6 +8,6 @@ RUN chown -R www-data /var/www
 RUN git clone https://github.com/INTER-Mediator/IMApp_Trial /var/www/html
 RUN cd /var/www/html; composer update --no-plugins --no-scripts
 RUN cd /var/www/html; composer install
-RUN curl -fsSL https://get.pnpm.io/install.sh | ENV="$HOME/.shrc" SHELL="$(which sh)" sh -
-RUN cd /var/www/html/vendor/inter-mediator/inter-mediator; "$HOME/.local/share/pnpm/bin/pnpm" ci
-RUN cd /var/www/html/vendor/inter-mediator/inter-mediator; ./dist-docs/generateminifyjshere.sh
+#RUN curl -fsSL https://get.pnpm.io/install.sh | ENV="$HOME/.shrc" SHELL="$(which sh)" sh -
+#RUN cd /var/www/html/vendor/inter-mediator/inter-mediator; "$HOME/.local/share/pnpm/bin/pnpm" ci
+#RUN cd /var/www/html/vendor/inter-mediator/inter-mediator; ./dist-docs/generateminifyjshere.sh

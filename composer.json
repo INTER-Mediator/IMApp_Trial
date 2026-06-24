@@ -53,7 +53,7 @@
     "allow-plugins": {
       "simplesamlphp/composer-module-installer": true,
       "simplesamlphp/composer-xmlprovider-installer": true,
-      "inter-mediator/inter-mediator": false
+      "inter-mediator/inter-mediator": true
     }
   }
 }
