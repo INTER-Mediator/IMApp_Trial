@@ -11,3 +11,4 @@ RUN cd /var/www/html; composer install
 RUN curl -fsSL https://get.pnpm.io/install.sh | ENV="$HOME/.shrc" SHELL="$(which sh)" sh -
 RUN cd /var/www/html/vendor/inter-mediator/inter-mediator; "$HOME/.local/share/pnpm/bin/pnpm" ci
 RUN cd /var/www/html/vendor/inter-mediator/inter-mediator; ./dist-docs/generateminifyjshere.sh
+RUN cd /var/www/html/vendor/inter-mediator/samples; ln -s ../../ vendor
