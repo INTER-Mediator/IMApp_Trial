@@ -2,6 +2,13 @@ FROM ghcr.io/inter-mediator/php-apache_im:latest
 
 RUN apt-get update
 RUN apt-get install -y git unzip npm nano
+
+# Composer
+ARG composer_ver=2.10.1
+COPY --from=ghcr.io/mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
+RUN chmod +x /usr/local/bin/install-php-extensions && sync \
+&& install-php-extensions @composer-${composer_ver}
+
 RUN docker-php-ext-install bcmath
 RUN rm -rf /var/www/html/*
 RUN chown -R www-data /var/www
