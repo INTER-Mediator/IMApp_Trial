@@ -1,4 +1,4 @@
-FROM --platform=linux/x86_64 php:8.4-apache
+FROM --platform=linux/x86_64 php:8.5-apache
 
 # Refer to https://tt-computing.com/docker-php8_0-lamp, Thanks!
 
@@ -16,6 +16,8 @@ RUN apt-get install -y libicu-dev
 RUN docker-php-ext-install intl
 # PHP EXIF
 RUN docker-php-ext-install exif
+# PHP BC-Math
+RUN docker-php-ext-install bcmath
 # PHP GD
 RUN apt-get install -y zlib1g-dev libpng-dev libjpeg62-turbo-dev
 RUN docker-php-ext-configure gd --with-jpeg

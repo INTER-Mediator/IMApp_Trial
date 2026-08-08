@@ -1,21 +1,11 @@
 FROM ghcr.io/inter-mediator/php-apache_im:latest
 
-RUN apt-get update
-RUN apt-get install -y git unzip npm nano
-
-# Composer
-ARG composer_ver=2.10.1
-COPY --from=ghcr.io/mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
-RUN chmod +x /usr/local/bin/install-php-extensions && sync \
-&& install-php-extensions @composer-${composer_ver}
-
-RUN docker-php-ext-install bcmath
 RUN rm -rf /var/www/html/*
 RUN chown -R www-data /var/www
 RUN git clone https://github.com/INTER-Mediator/IMApp_Trial /var/www/html
-RUN cd /var/www/html; composer update --no-plugins --no-scripts
+# RUN cd /var/www/html; composer update --no-plugins --no-scripts
 RUN cd /var/www/html; composer install
-RUN curl -fsSL https://get.pnpm.io/install.sh | ENV="$HOME/.shrc" SHELL="$(which sh)" sh -
-RUN cd /var/www/html/vendor/inter-mediator/inter-mediator; "$HOME/.local/share/pnpm/bin/pnpm" ci
-RUN cd /var/www/html/vendor/inter-mediator/inter-mediator; ./dist-docs/generateminifyjshere.sh
-RUN cd /var/www/html/vendor/inter-mediator/samples; ln -s ../../ vendor
+# RUN curl -fsSL https://get.pnpm.io/install.sh | ENV="$HOME/.shrc" SHELL="$(which sh)" sh -
+# RUN cd /var/www/html/vendor/inter-mediator/inter-mediator; "$HOME/.local/share/pnpm/bin/pnpm" ci
+# RUN cd /var/www/html/vendor/inter-mediator/inter-mediator; ./dist-docs/generateminifyjshere.sh
+# RUN cd /var/www/html/vendor/inter-mediator/samples; ln -s ../../ vendor
