@@ -1,8 +1,8 @@
 FROM ghcr.io/inter-mediator/php-apache_im:latest
 
-ENV IM_IN_DOCKER=1
-#ENV ENV="$HOME/.shrc"
-#ENV SHELL=/bin/sh
+#ENV IM_IN_DOCKER=1
+ENV ENV="$HOME/.shrc"
+ENV SHELL=/bin/sh
 
 RUN rm -rf /var/www/html/*
 RUN chown -R www-data /var/www
