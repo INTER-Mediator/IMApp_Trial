@@ -21,9 +21,7 @@ services:
       - type: bind
         source: ./lib/docker/mysql/initdb/sample_schema_mysql.sql
         target: /docker-entrypoint-initdb.d/sample_schema_mysql.sql
-      - type: bind
-        source: ./lib/docker/mysql/db
-        target: /var/lib/mysql
+      - mysql-data:/var/lib/mysql
       - type: bind
         source: ./lib/docker/mysql/conf/my.cnf
         target: /etc/mysql/conf.d/my.cnf
@@ -40,3 +38,6 @@ services:
 #    ports:
 #      - "8025:8025"
 #      - "1025:1025"
+
+volumes:
+  mysql-data:
