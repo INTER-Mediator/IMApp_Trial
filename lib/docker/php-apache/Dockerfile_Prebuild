@@ -1,15 +1,25 @@
-FROM ghcr.io/inter-mediator/php-apache_im:latest
-
-#ENV IM_IN_DOCKER=1
+# Stage 1: Full build on the native platform (ARM64 on Apple Silicon)
+# InstallerPlugin runs natively: pnpm install, pnpm ci, JS minify, doafterinstall.sh
+FROM --platform=$BUILDPLATFORM node:24-slim AS node-src
+FROM --platform=$BUILDPLATFORM php:8.4-cli AS builder
 ENV ENV="$HOME/.shrc"
 ENV SHELL=/bin/sh
-
-RUN rm -rf /var/www/html/*
-RUN chown -R www-data /var/www
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+COPY --from=node-src /usr/local/bin/node /usr/local/bin/node
+COPY --from=node-src /usr/local/lib/node_modules /usr/local/lib/node_modules
+RUN ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm
+RUN ln -s /usr/local/lib/node_modules/corepack/dist/corepack.js /usr/local/bin/npx
+RUN apt-get update && apt-get install -y git unzip libicu-dev
+RUN docker-php-ext-install intl bcmath
 RUN git clone https://github.com/INTER-Mediator/IMApp_Trial /var/www/html
-# RUN cd /var/www/html; composer update --no-plugins --no-scripts
-RUN cd /var/www/html; composer install
-#RUN curl -fsSL https://get.pnpm.io/install.sh | ENV="$HOME/.shrc" SHELL="$(which sh)" sh -
-#RUN cd /var/www/html/vendor/inter-mediator/inter-mediator; "$HOME/.local/share/pnpm/bin/pnpm" ci
-#RUN cd /var/www/html/vendor/inter-mediator/inter-mediator; ./dist-docs/generateminifyjshere.sh
-#RUN cd /var/www/html/vendor/inter-mediator/samples; ln -s ../../ vendor
+RUN cd /var/www/html; composer install --ignore-platform-reqs
+
+# Stage 2: Final image (target platform, AMD64 via docker-compose.yaml)
+FROM ghcr.io/inter-mediator/php-apache_im:latest
+ENV ENV="$HOME/.shrc"
+ENV SHELL=/bin/sh
+ENV IM_IN_DOCKER=1
+RUN rm -rf /var/www/html/*
+COPY --from=builder /var/www/html /var/www/html
+RUN sed -i "s/file_exists('\/.dockerenv')/getenv('IM_IN_DOCKER')/" /var/www/html/lib/params.php
+RUN chown -R www-data /var/www
