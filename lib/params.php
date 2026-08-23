@@ -64,7 +64,7 @@ $webServerName = array('');
 /* Customize the Content-Security-Policy header
  *
  * The Content-Security-Policy header contains with the value of variable $contentSecurityPolicy.
- * If this variable isn't specified or "", the Content-Security-Policy header doesn't contains.
+ * If this variable isn't specified or "", the Content-Security-Policy header doesn't contain.
  * See below about Content-Security-Policy header.
  * https://developer.mozilla.org/ja/docs/Web/Security/CSP/Using_Content_Security_Policy
  */
@@ -130,13 +130,13 @@ $authRealm = 'INTER-Mediator_Trial';
 //$emailAsAliasOfUserName = true;
 //$passwordPolicy = "useAlphabet useNumber useUpper useLower usePunctuation length(10) notUserName";
 
-// A enrollment page and a password reset page are going to show on login panel.
+//An enrollment page and a password reset page are going to show on login panel.
 //$resetPage = '...url...';
 //$enrollPage = '...url...';
 
 //$suppressDefaultValuesOnCopy = false; // If you don't want to set default values on copying records, set this true
 //$suppressDefaultValuesOnCopyAssoc = false; // If you don't want to set default values on copying records of the associated records, set this true
-//$suppressAuthTargetFillingOnCreate = false; // If you don' want to set the target field of authentication on carete operation, set this true.
+//$suppressAuthTargetFillingOnCreate = false; // If you don't want to set the target field of authentication on carete operation, set this true.
 
 /* OAuth Support */
 //$oAuth = [
@@ -212,7 +212,7 @@ $accessRegion = "ap-northeast-1"; // This means the Tokyo region.
 // Set the code of the endpoint from https://docs.aws.amazon.com/general/latest/gr/rande.html
 $rootBucket = "inter-mediator-developping";
 $applyingACL = "bucket-owner-read";
-// You can choose from two way, specifying key and secret or setting them into the profile file
+// You can choose from two-way, specifying key and secret or setting them into the profile file
 // 'private|public-read|public-read-write|authenticated-read|aws-exec-read|bucket-owner-read|bucket-owner-full-control'
 $s3AccessProfile = "im-develop";
 $s3AccessKey = "AKIAXXXXXXXXXXXXXXXX";
@@ -245,7 +245,7 @@ $s3urlCustomize = true; // The default value is TRUE.
 // Altering messages, overwrite and/or adding new messages. The first index is a language, and the second is the error number.
 $messages['default'][1022] = "We don't support Internet Explorer. We'd like you to access by Edge or any other major browsers.";
 $messages['ja'][1022] = "Internet Explorerは使用できません。Edgeあるいは他の一般的なブラウザをご利用ください。";
-// These messages are for sample purpose but they are used for unit tests. If you modify them, you have to care about the test code.
+// These messages are for sample purpose, but they are used for unit tests. If you modify them, you have to care about the test code.
 
 /* Initial values for local context with their keys. */
 //$valuesForLocalContext = array(
@@ -289,5 +289,5 @@ $prohibitDebugMode = false;
 // INTER-Mediator client should call the definition file to work fine.
 // Usually $_SERVER['SCRIPT_NAME'] is the url to request from client.
 // In case of using INTER-Mediator with other frameworks, you might specify any special URL to call.
-// So you can set the another url to the $callURL variables and it can be replaced with $_SERVER['SCRIPT_NAME'].
+// So you can set the another url to the $callURL variables, and it can be replaced with $_SERVER['SCRIPT_NAME'].
 //$callURL = "http://yourdomai/your/path/to/definition-file.php"
